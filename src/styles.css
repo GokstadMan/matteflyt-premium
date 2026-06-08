@@ -231,3 +231,8 @@
 @utility animate-float-medium { animation: float-medium 5s ease-in-out infinite; }
 @utility animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
 
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
