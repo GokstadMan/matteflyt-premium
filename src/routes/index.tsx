@@ -22,7 +22,7 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MathFlow — Mestre matematikk gjennom visuell læring" },
+      { title: "MathFlow — Mestre matematikk" },
       {
         name: "description",
         content:
@@ -129,9 +129,7 @@ function Nav() {
             </a>
           ))}
           <div className="flex gap-2 pt-2">
-            <button className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border">
-              Logg inn
-            </button>
+            <button className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border">Logg inn</button>
             <button className="flex-1 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground">
               Kom i gang
             </button>
@@ -171,13 +169,12 @@ function Hero() {
           </div>
 
           <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">
-            Mestre matematikk{" "}
-            <span className="gradient-text">gjennom visuell læring</span>
+            Mestre matematikk <span className="gradient-text">gjennom visuell læring</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-            Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger laget for å
-            hjelpe elever å lære raskere.
+            Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger laget for å hjelpe elever å lære
+            raskere.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -230,8 +227,10 @@ function Hero() {
 function HeroIllustration() {
   return (
     <div className="relative w-full h-full">
-      <div className="absolute inset-0 -z-10 blur-3xl opacity-60"
-           style={{ background: "radial-gradient(circle at 60% 40%, oklch(0.85 0.13 152 / 0.6), transparent 60%)" }} />
+      <div
+        className="absolute inset-0 -z-10 blur-3xl opacity-60"
+        style={{ background: "radial-gradient(circle at 60% 40%, oklch(0.85 0.13 152 / 0.6), transparent 60%)" }}
+      />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -250,7 +249,8 @@ function HeroIllustration() {
 
         <div className="mt-5 text-xs font-mono text-muted-foreground">Løs for x</div>
         <div className="mt-2 text-2xl font-bold tracking-tight">
-          ∫<sub>0</sub><sup>π</sup> sin(x) dx = <span className="gradient-text">2</span>
+          ∫<sub>0</sub>
+          <sup>π</sup> sin(x) dx = <span className="gradient-text">2</span>
         </div>
 
         <svg viewBox="0 0 320 140" className="mt-6 w-full">
@@ -261,8 +261,15 @@ function HeroIllustration() {
             </linearGradient>
           </defs>
           {[0, 1, 2, 3].map((i) => (
-            <line key={i} x1="0" x2="320" y1={35 * i + 10} y2={35 * i + 10}
-              stroke="oklch(0.215 0.06 257 / 0.08)" strokeDasharray="3 4" />
+            <line
+              key={i}
+              x1="0"
+              x2="320"
+              y1={35 * i + 10}
+              y2={35 * i + 10}
+              stroke="oklch(0.215 0.06 257 / 0.08)"
+              strokeDasharray="3 4"
+            />
           ))}
           <path
             d="M0,110 C40,40 80,30 120,70 S200,130 240,60 300,20 320,40"
@@ -278,9 +285,20 @@ function HeroIllustration() {
             opacity="0"
             style={{ animation: "fade-in 1s ease-out 2s forwards" }}
           />
-          {[[60, 75], [140, 85], [220, 68], [290, 35]].map(([cx, cy], i) => (
-            <circle key={i} cx={cx} cy={cy} r="4" fill="var(--mf-navy)"
-              style={{ animation: `pulse-soft 2.5s ease-in-out ${i * 0.3}s infinite` }} />
+          {[
+            [60, 75],
+            [140, 85],
+            [220, 68],
+            [290, 35],
+          ].map(([cx, cy], i) => (
+            <circle
+              key={i}
+              cx={cx}
+              cy={cy}
+              r="4"
+              fill="var(--mf-navy)"
+              style={{ animation: `pulse-soft 2.5s ease-in-out ${i * 0.3}s infinite` }}
+            />
           ))}
         </svg>
 
@@ -299,7 +317,9 @@ function HeroIllustration() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
         className="absolute -left-2 top-16 glass-card rounded-2xl px-4 py-3 animate-float-slow"
       >
         <div className="text-[10px] font-mono text-muted-foreground">Pytagoras</div>
@@ -307,18 +327,31 @@ function HeroIllustration() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
         className="absolute -right-2 top-32 glass-card rounded-2xl p-3 animate-float-medium"
       >
         <svg width="80" height="80" viewBox="0 0 80 80">
           <polygon points="40,8 72,64 8,64" fill="none" stroke="var(--mf-navy)" strokeWidth="2" />
           <circle cx="40" cy="48" r="18" fill="none" stroke="oklch(0.72 0.14 152)" strokeWidth="2" />
-          <rect x="22" y="30" width="36" height="36" fill="none" stroke="var(--mf-navy)" strokeWidth="1.5" strokeDasharray="3 3" />
+          <rect
+            x="22"
+            y="30"
+            width="36"
+            height="36"
+            fill="none"
+            stroke="var(--mf-navy)"
+            strokeWidth="1.5"
+            strokeDasharray="3 3"
+          />
         </svg>
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9 }}
         className="absolute -left-2 bottom-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-3 animate-float-medium"
       >
         <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg">
@@ -331,7 +364,9 @@ function HeroIllustration() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
         className="absolute right-6 bottom-16 h-16 w-16 rounded-2xl gradient-premium-bg grid place-items-center text-primary-foreground text-3xl font-bold animate-float-slow shadow-glow-navy"
       >
         π
@@ -361,9 +396,7 @@ function Stats() {
               transition={{ delay: i * 0.08 }}
               className="text-center md:text-left"
             >
-              <div className="text-4xl md:text-5xl font-extrabold tracking-tight gradient-text">
-                {s.v}
-              </div>
+              <div className="text-4xl md:text-5xl font-extrabold tracking-tight gradient-text">{s.v}</div>
               <div className="mt-2 text-sm text-muted-foreground font-medium">{s.l}</div>
             </motion.div>
           ))}
@@ -496,10 +529,7 @@ function Testimonials() {
   return (
     <section id="testimonials" className="py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader
-          eyebrow="Elsket av elever"
-          title="Ekte fremgang, med deres egne ord"
-        />
+        <SectionHeader eyebrow="Elsket av elever" title="Ekte fremgang, med deres egne ord" />
         <div className="mt-16 grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
             <motion.div
@@ -582,9 +612,7 @@ function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className={`relative rounded-3xl p-8 md:p-10 transition-all hover:-translate-y-1 ${
-                p.featured
-                  ? "gradient-premium-bg text-primary-foreground shadow-glow-navy"
-                  : "glass-card"
+                p.featured ? "gradient-premium-bg text-primary-foreground shadow-glow-navy" : "glass-card"
               }`}
             >
               {p.featured && (
@@ -592,7 +620,9 @@ function Pricing() {
                   ANBEFALT
                 </span>
               )}
-              <div className={`text-xs font-semibold uppercase tracking-wider ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+              <div
+                className={`text-xs font-semibold uppercase tracking-wider ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}
+              >
                 {p.tag}
               </div>
               <div className="mt-2 text-2xl font-bold">{p.name}</div>
@@ -605,7 +635,9 @@ function Pricing() {
               <ul className="mt-8 space-y-3">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
-                    <span className={`mt-0.5 grid place-items-center h-5 w-5 rounded-full ${p.featured ? "bg-primary-foreground/15" : "bg-primary/10"}`}>
+                    <span
+                      className={`mt-0.5 grid place-items-center h-5 w-5 rounded-full ${p.featured ? "bg-primary-foreground/15" : "bg-primary/10"}`}
+                    >
                       <Check className={`h-3 w-3 ${p.featured ? "text-primary-foreground" : "text-primary"}`} />
                     </span>
                     {f}
@@ -717,9 +749,15 @@ function Footer() {
         <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div>© {new Date().getFullYear()} MathFlow. Alle rettigheter reservert.</div>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-foreground">Personvern</a>
-            <a href="#" className="hover:text-foreground">Vilkår</a>
-            <a href="#" className="hover:text-foreground">Informasjonskapsler</a>
+            <a href="#" className="hover:text-foreground">
+              Personvern
+            </a>
+            <a href="#" className="hover:text-foreground">
+              Vilkår
+            </a>
+            <a href="#" className="hover:text-foreground">
+              Informasjonskapsler
+            </a>
           </div>
         </div>
       </div>
@@ -728,26 +766,14 @@ function Footer() {
 }
 
 /* ───────────────────────── HELPERS ───────────────────────── */
-function SectionHeader({
-  eyebrow,
-  title,
-  subtitle,
-}: {
-  eyebrow: string;
-  title: string;
-  subtitle?: string;
-}) {
+function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
     <div className="text-center max-w-2xl mx-auto">
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-xs font-semibold uppercase tracking-wider text-primary">
         {eyebrow}
       </div>
-      <h2 className="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="mt-5 text-lg text-muted-foreground leading-relaxed">{subtitle}</p>
-      )}
+      <h2 className="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">{title}</h2>
+      {subtitle && <p className="mt-5 text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
     </div>
   );
 }
