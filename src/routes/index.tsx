@@ -22,17 +22,17 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MathFlow — Master Mathematics Through Visual Learning" },
+      { title: "MathFlow — Mestre matematikk gjennom visuell læring" },
       {
         name: "description",
         content:
-          "Interactive lessons, AI-powered explanations, and step-by-step solutions designed to help students learn math faster.",
+          "Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger som hjelper elever å lære matte raskere.",
       },
-      { property: "og:title", content: "MathFlow — Master Mathematics Through Visual Learning" },
+      { property: "og:title", content: "MathFlow — Mestre matematikk gjennom visuell læring" },
       {
         property: "og:description",
         content:
-          "Interactive lessons, AI-powered explanations, and step-by-step solutions designed to help students learn math faster.",
+          "Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger som hjelper elever å lære matte raskere.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -41,11 +41,11 @@ export const Route = createFileRoute("/")({
 });
 
 const nav = [
-  { label: "Features", href: "#features" },
-  { label: "Courses", href: "#courses" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Funksjoner", href: "#features" },
+  { label: "Kurs", href: "#courses" },
+  { label: "Priser", href: "#pricing" },
+  { label: "Anmeldelser", href: "#testimonials" },
+  { label: "Kontakt", href: "#contact" },
 ];
 
 function Landing() {
@@ -103,10 +103,10 @@ function Nav() {
 
         <div className="hidden md:flex items-center gap-2">
           <button className="px-4 py-2 text-sm font-semibold rounded-full hover:bg-primary/5 transition">
-            Login
+            Logg inn
           </button>
           <button className="group inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all">
-            Get Started
+            Kom i gang
             <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition" />
           </button>
         </div>
@@ -130,10 +130,10 @@ function Nav() {
           ))}
           <div className="flex gap-2 pt-2">
             <button className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border">
-              Login
+              Logg inn
             </button>
             <button className="flex-1 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground">
-              Get Started
+              Kom i gang
             </button>
           </div>
         </div>
@@ -149,7 +149,6 @@ function Hero() {
 
   return (
     <section className="relative min-h-screen gradient-hero-bg pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
-      {/* grid backdrop */}
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
@@ -168,29 +167,29 @@ function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-xs font-semibold">
             <Sparkles className="h-3.5 w-3.5 text-accent-foreground" />
-            Trusted by 10,000+ students
+            Brukt av 10 000+ elever
           </div>
 
           <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">
-            Master Mathematics{" "}
-            <span className="gradient-text">Through Visual Learning</span>
+            Mestre matematikk{" "}
+            <span className="gradient-text">gjennom visuell læring</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-            Interactive lessons, AI-powered explanations, and step-by-step solutions designed to
-            help students learn faster.
+            Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger laget for å
+            hjelpe elever å lære raskere.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <button className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all">
-              Start Learning Free
+              Start å lære gratis
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition" />
             </button>
             <button className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
               <span className="grid place-items-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                 <Play className="h-3.5 w-3.5 ml-0.5" />
               </span>
-              Watch Demo
+              Se demo
             </button>
           </div>
 
@@ -214,8 +213,8 @@ function Hero() {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-primary text-primary" />
               ))}
-              <span className="ml-1 font-semibold text-foreground">4.9</span>
-              <span>from 2,400+ reviews</span>
+              <span className="ml-1 font-semibold text-foreground">4,9</span>
+              <span>fra 2 400+ anmeldelser</span>
             </div>
           </div>
         </motion.div>
@@ -231,11 +230,9 @@ function Hero() {
 function HeroIllustration() {
   return (
     <div className="relative w-full h-full">
-      {/* big glow */}
       <div className="absolute inset-0 -z-10 blur-3xl opacity-60"
            style={{ background: "radial-gradient(circle at 60% 40%, oklch(0.85 0.13 152 / 0.6), transparent 60%)" }} />
 
-      {/* Central dashboard card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -248,15 +245,14 @@ function HeroIllustration() {
             <div className="h-2.5 w-2.5 rounded-full bg-[oklch(0.82_0.14_85)]" />
             <div className="h-2.5 w-2.5 rounded-full bg-[oklch(0.72_0.14_152)]" />
           </div>
-          <div className="text-[10px] font-mono text-muted-foreground">lesson_42.calc</div>
+          <div className="text-[10px] font-mono text-muted-foreground">leksjon_42.calc</div>
         </div>
 
-        <div className="mt-5 text-xs font-mono text-muted-foreground">Solve for x</div>
+        <div className="mt-5 text-xs font-mono text-muted-foreground">Løs for x</div>
         <div className="mt-2 text-2xl font-bold tracking-tight">
           ∫<sub>0</sub><sup>π</sup> sin(x) dx = <span className="gradient-text">2</span>
         </div>
 
-        {/* Graph */}
         <svg viewBox="0 0 320 140" className="mt-6 w-full">
           <defs>
             <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
@@ -290,9 +286,9 @@ function HeroIllustration() {
 
         <div className="mt-5 grid grid-cols-3 gap-2">
           {[
-            { l: "Accuracy", v: "98%" },
-            { l: "Streak", v: "14d" },
-            { l: "XP", v: "2,340" },
+            { l: "Treffsikkerhet", v: "98%" },
+            { l: "Rekke", v: "14d" },
+            { l: "XP", v: "2 340" },
           ].map((s) => (
             <div key={s.l} className="rounded-xl bg-secondary/60 p-3">
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{s.l}</div>
@@ -302,16 +298,14 @@ function HeroIllustration() {
         </div>
       </motion.div>
 
-      {/* Floating equation chip */}
       <motion.div
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
         className="absolute -left-2 top-16 glass-card rounded-2xl px-4 py-3 animate-float-slow"
       >
-        <div className="text-[10px] font-mono text-muted-foreground">Pythagoras</div>
+        <div className="text-[10px] font-mono text-muted-foreground">Pytagoras</div>
         <div className="text-lg font-bold mt-0.5">a² + b² = c²</div>
       </motion.div>
 
-      {/* Floating geometry chip */}
       <motion.div
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
         className="absolute -right-2 top-32 glass-card rounded-2xl p-3 animate-float-medium"
@@ -323,7 +317,6 @@ function HeroIllustration() {
         </svg>
       </motion.div>
 
-      {/* Bottom AI tutor chip */}
       <motion.div
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}
         className="absolute -left-2 bottom-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-3 animate-float-medium"
@@ -332,12 +325,11 @@ function HeroIllustration() {
           <Brain className="h-4 w-4 text-primary-foreground" />
         </span>
         <div>
-          <div className="text-[10px] font-mono text-muted-foreground">AI Tutor</div>
-          <div className="text-xs font-semibold">Step explained ✓</div>
+          <div className="text-[10px] font-mono text-muted-foreground">AI-veileder</div>
+          <div className="text-xs font-semibold">Steg forklart ✓</div>
         </div>
       </motion.div>
 
-      {/* Floating π */}
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
         className="absolute right-6 bottom-16 h-16 w-16 rounded-2xl gradient-premium-bg grid place-items-center text-primary-foreground text-3xl font-bold animate-float-slow shadow-glow-navy"
@@ -351,10 +343,10 @@ function HeroIllustration() {
 /* ───────────────────────── STATS ───────────────────────── */
 function Stats() {
   const items = [
-    { v: "50,000+", l: "Problems Solved" },
-    { v: "10,000+", l: "Students" },
-    { v: "95%", l: "Satisfaction Rate" },
-    { v: "200+", l: "Lessons" },
+    { v: "50 000+", l: "Oppgaver løst" },
+    { v: "10 000+", l: "Elever" },
+    { v: "95%", l: "Tilfredshet" },
+    { v: "200+", l: "Leksjoner" },
   ];
   return (
     <section className="relative py-20">
@@ -386,18 +378,18 @@ function Features() {
   const items = [
     {
       icon: Compass,
-      title: "Interactive Problem Solving",
-      desc: "Drag, draw, and explore problems in real time. Mistakes become moments of discovery.",
+      title: "Interaktiv problemløsning",
+      desc: "Dra, tegn og utforsk oppgaver i sanntid. Feil blir til øyeblikk for læring.",
     },
     {
       icon: Brain,
-      title: "AI Math Tutor",
-      desc: "An always-on tutor that explains every step in plain language, adapted to your level.",
+      title: "AI-matteveileder",
+      desc: "En alltid tilgjengelig veileder som forklarer hvert steg på et språk tilpasset ditt nivå.",
     },
     {
       icon: LineChart,
-      title: "Visual Graph Explorer",
-      desc: "Manipulate equations and watch graphs respond instantly — math you can finally see.",
+      title: "Visuell grafutforsker",
+      desc: "Endre ligninger og se grafene respondere umiddelbart — matte du endelig kan se.",
     },
   ];
 
@@ -405,9 +397,9 @@ function Features() {
     <section id="features" className="py-28">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
-          eyebrow="Features"
-          title="Built for how students actually learn"
-          subtitle="Every tool in MathFlow is designed to remove friction and replace it with insight."
+          eyebrow="Funksjoner"
+          title="Bygget for hvordan elever faktisk lærer"
+          subtitle="Hvert verktøy i MathFlow er laget for å fjerne friksjon og erstatte den med innsikt."
         />
 
         <div className="mt-16 grid md:grid-cols-3 gap-6">
@@ -426,7 +418,7 @@ function Features() {
               <h3 className="mt-6 text-xl font-bold">{f.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition">
-                Learn more <ArrowRight className="h-4 w-4" />
+                Les mer <ArrowRight className="h-4 w-4" />
               </div>
             </motion.div>
           ))}
@@ -439,17 +431,17 @@ function Features() {
 /* ───────────────────────── HOW IT WORKS ───────────────────────── */
 function HowItWorks() {
   const steps = [
-    { n: "01", t: "Choose Topic", d: "Pick from 200+ structured lessons across algebra, calculus, geometry and more." },
-    { n: "02", t: "Practice Problems", d: "Solve adaptive problem sets with instant feedback from your AI tutor." },
-    { n: "03", t: "Track Progress", d: "Watch streaks grow and weak spots vanish on your personal dashboard." },
+    { n: "01", t: "Velg tema", d: "Velg blant 200+ strukturerte leksjoner innen algebra, kalkulus, geometri og mer." },
+    { n: "02", t: "Øv på oppgaver", d: "Løs tilpassede oppgavesett med umiddelbar tilbakemelding fra AI-veilederen." },
+    { n: "03", t: "Følg fremgangen", d: "Se rekken vokse og svake punkter forsvinne på ditt personlige dashbord." },
   ];
   return (
     <section id="courses" className="py-28 bg-secondary/70">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
-          eyebrow="How it works"
-          title="Three steps to fluency"
-          subtitle="A focused loop designed by educators and engineers."
+          eyebrow="Slik fungerer det"
+          title="Tre steg til mestring"
+          subtitle="En fokusert sløyfe designet av lærere og ingeniører."
         />
 
         <div className="mt-16 relative grid md:grid-cols-3 gap-8">
@@ -481,22 +473,22 @@ function Testimonials() {
   const items = [
     {
       n: "Amelia Chen",
-      r: "AP Calculus Student",
-      q: "MathFlow finally made integrals click. The visual graphs are like nothing my textbook ever had.",
+      r: "Elev, matematikk R2",
+      q: "MathFlow fikk endelig integraler til å gi mening. De visuelle grafene er som intet jeg har sett i læreboka.",
       i: "AC",
       g: "linear-gradient(135deg,#0ea5e9,#22d3ee)",
     },
     {
       n: "Marcus Bell",
-      r: "High School Senior",
-      q: "The AI tutor explains every step. I went from a C to an A- in one semester.",
+      r: "Avgangselev videregående",
+      q: "AI-veilederen forklarer hvert steg. Jeg gikk fra 3 til 5 på ett semester.",
       i: "MB",
       g: "linear-gradient(135deg,#16a34a,#84cc16)",
     },
     {
       n: "Priya Raman",
-      r: "Engineering Freshman",
-      q: "I use MathFlow as my pre-class warm-up. It pays for itself every single week.",
+      r: "Førsteårs ingeniørstudent",
+      q: "Jeg bruker MathFlow som oppvarming før forelesning. Det betaler seg hver uke.",
       i: "PR",
       g: "linear-gradient(135deg,#7c3aed,#ec4899)",
     },
@@ -505,8 +497,8 @@ function Testimonials() {
     <section id="testimonials" className="py-28">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
-          eyebrow="Loved by students"
-          title="Real progress, in their own words"
+          eyebrow="Elsket av elever"
+          title="Ekte fremgang, med deres egne ord"
         />
         <div className="mt-16 grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
@@ -548,26 +540,26 @@ function Testimonials() {
 function Pricing() {
   const plans = [
     {
-      name: "Free",
-      price: "$0",
-      tag: "Start your journey",
-      features: ["20 problems / day", "Core lessons", "Basic progress tracking", "Community support"],
-      cta: "Start free",
+      name: "Gratis",
+      price: "0 kr",
+      tag: "Start reisen",
+      features: ["20 oppgaver / dag", "Grunnleggende leksjoner", "Enkel fremgangssporing", "Fellesskapsstøtte"],
+      cta: "Start gratis",
       featured: false,
     },
     {
       name: "Pro",
-      price: "$12",
-      tag: "Most popular",
+      price: "129 kr",
+      tag: "Mest populær",
       features: [
-        "Unlimited problems",
-        "AI Math Tutor (24/7)",
-        "All 200+ lessons & courses",
-        "Visual Graph Explorer",
-        "Advanced analytics",
-        "Priority support",
+        "Ubegrensede oppgaver",
+        "AI-matteveileder (24/7)",
+        "Alle 200+ leksjoner og kurs",
+        "Visuell grafutforsker",
+        "Avansert analyse",
+        "Prioritert support",
       ],
-      cta: "Go Pro",
+      cta: "Bli Pro",
       featured: true,
     },
   ];
@@ -576,9 +568,9 @@ function Pricing() {
     <section id="pricing" className="py-28 bg-secondary/70">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeader
-          eyebrow="Pricing"
-          title="Simple plans. Serious progress."
-          subtitle="Start free. Upgrade when you’re ready to accelerate."
+          eyebrow="Priser"
+          title="Enkle planer. Reell fremgang."
+          subtitle="Start gratis. Oppgrader når du er klar til å akselerere."
         />
 
         <div className="mt-16 grid md:grid-cols-2 gap-6">
@@ -597,7 +589,7 @@ function Pricing() {
             >
               {p.featured && (
                 <span className="absolute -top-3 right-8 px-3 py-1 rounded-full text-[11px] font-bold bg-[oklch(0.72_0.14_152)] text-primary">
-                  RECOMMENDED
+                  ANBEFALT
                 </span>
               )}
               <div className={`text-xs font-semibold uppercase tracking-wider ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
@@ -607,7 +599,7 @@ function Pricing() {
               <div className="mt-6 flex items-baseline gap-1">
                 <span className="text-5xl font-extrabold tracking-tight">{p.price}</span>
                 <span className={`text-sm ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-                  /month
+                  /måned
                 </span>
               </div>
               <ul className="mt-8 space-y-3">
@@ -643,7 +635,6 @@ function FinalCTA() {
     <section id="contact" className="py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="relative overflow-hidden rounded-[2.5rem] gradient-premium-bg px-8 py-20 md:p-24 text-center shadow-glow-navy">
-          {/* decorative grid */}
           <div
             className="absolute inset-0 opacity-[0.08]"
             style={{
@@ -657,14 +648,14 @@ function FinalCTA() {
 
           <div className="relative">
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
-              Ready to Transform <br className="hidden md:block" />
-              Your Math Skills?
+              Klar til å forvandle <br className="hidden md:block" />
+              matteferdighetene dine?
             </h2>
             <p className="mt-6 max-w-xl mx-auto text-primary-foreground/75">
-              Join 10,000+ students already learning faster with MathFlow.
+              Bli med 10 000+ elever som allerede lærer raskere med MathFlow.
             </p>
             <button className="mt-10 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all">
-              Get Started Today
+              Kom i gang i dag
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
@@ -677,9 +668,9 @@ function FinalCTA() {
 /* ───────────────────────── FOOTER ───────────────────────── */
 function Footer() {
   const cols = [
-    { t: "Product", l: ["Features", "Courses", "Pricing", "Changelog"] },
-    { t: "Company", l: ["About", "Blog", "Careers", "Contact"] },
-    { t: "Resources", l: ["Help center", "Community", "Guides", "API"] },
+    { t: "Produkt", l: ["Funksjoner", "Kurs", "Priser", "Endringslogg"] },
+    { t: "Selskap", l: ["Om oss", "Blogg", "Karriere", "Kontakt"] },
+    { t: "Ressurser", l: ["Hjelpesenter", "Fellesskap", "Guider", "API"] },
   ];
   return (
     <footer className="border-t border-border bg-secondary/60">
@@ -692,7 +683,7 @@ function Footer() {
             <span className="text-lg font-bold tracking-tight">MathFlow</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
-            Visual, interactive mathematics learning for the next generation of curious minds.
+            Visuell og interaktiv matematikklæring for den neste generasjonen nysgjerrige sinn.
           </p>
           <div className="mt-6 flex items-center gap-2">
             {[Twitter, Github, Linkedin, Youtube].map((Ic, i) => (
@@ -724,11 +715,11 @@ function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} MathFlow. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} MathFlow. Alle rettigheter reservert.</div>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-foreground">Privacy</a>
-            <a href="#" className="hover:text-foreground">Terms</a>
-            <a href="#" className="hover:text-foreground">Cookies</a>
+            <a href="#" className="hover:text-foreground">Personvern</a>
+            <a href="#" className="hover:text-foreground">Vilkår</a>
+            <a href="#" className="hover:text-foreground">Informasjonskapsler</a>
           </div>
         </div>
       </div>
