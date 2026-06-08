@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
         content:
           "Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger som hjelper elever å lære matte raskere.",
       },
-      { property: "og:title", content: "MathFlow — Mestre matematikk gjennom visuell læring" },
+      { property: "og:title", content: "MathFlow — Mestre matematikk" },
       {
         property: "og:description",
         content:
