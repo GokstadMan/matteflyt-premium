@@ -169,7 +169,7 @@ function Hero() {
           </div>
 
           <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">
-            Mestre matematikk <span className="gradient-text">gjennom visuell læring</span>
+            Mestre matematikk
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
