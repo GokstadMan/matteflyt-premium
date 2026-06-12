@@ -97,6 +97,13 @@ function Dashboard() {
           <p className="mt-2 text-muted-foreground">
             Du er på en {seed.streakDays}-dagers stripe. Fortsett sånn!
           </p>
+          <Link
+            to="/tutor"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-emerald-700"
+          >
+            <Sparkles className="h-4 w-4" /> Spør AI-mattelæreren Flytur
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </motion.div>
 
         {/* Stats */}
