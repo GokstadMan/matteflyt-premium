@@ -1,0 +1,37 @@
+export const dashboardSeed = {
+  streakDays: 14,
+  xp: 2340,
+  level: 7,
+  weeklyMinutes: 187,
+  solvedProblems: 248,
+  masteredTopics: 6,
+  topics: [
+    { name: "Algebra", progress: 82, color: "oklch(0.72 0.14 152)" },
+    { name: "Geometri", progress: 64, color: "oklch(0.68 0.13 180)" },
+    { name: "Brøk", progress: 91, color: "oklch(0.76 0.14 130)" },
+    { name: "Likninger", progress: 47, color: "oklch(0.7 0.14 200)" },
+    { name: "Funksjoner", progress: 35, color: "oklch(0.74 0.14 110)" },
+  ],
+  weekActivity: [
+    { day: "Man", minutes: 32 },
+    { day: "Tir", minutes: 18 },
+    { day: "Ons", minutes: 45 },
+    { day: "Tor", minutes: 22 },
+    { day: "Fre", minutes: 38 },
+    { day: "Lør", minutes: 12 },
+    { day: "Søn", minutes: 20 },
+  ],
+  nextLessons: [
+    { title: "Andregradsligninger", topic: "Algebra", minutes: 12, difficulty: "Middels" },
+    { title: "Pytagoras i 3D", topic: "Geometri", minutes: 18, difficulty: "Vanskelig" },
+    { title: "Lineære funksjoner", topic: "Funksjoner", minutes: 9, difficulty: "Lett" },
+  ],
+  achievements: [
+    { name: "Første skritt", desc: "Løste din første oppgave", unlocked: true },
+    { name: "Ukens helt", desc: "7 dager på rad", unlocked: true },
+    { name: "Algebra-mester", desc: "100 algebraoppgaver", unlocked: true },
+    { name: "Lynrask", desc: "10 oppgaver på 5 min", unlocked: true },
+    { name: "Perfekt uke", desc: "100% riktig i 7 dager", unlocked: false },
+    { name: "Matte-magi", desc: "Nå nivå 10", unlocked: false },
+  ],
+};
