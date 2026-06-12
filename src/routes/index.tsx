@@ -206,10 +206,13 @@ function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <button className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all">
+            <Link
+              to="/auth"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all"
+            >
               Start å lære gratis
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition" />
-            </button>
+            </Link>
             <button className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
               <span className="grid place-items-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                 <Play className="h-3.5 w-3.5 ml-0.5" />
@@ -714,10 +717,13 @@ function FinalCTA() {
             <p className="mt-6 max-w-xl mx-auto text-primary-foreground/75">
               Bli med 10 000+ elever som allerede lærer raskere med MathFlow.
             </p>
-            <button className="mt-10 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all">
+            <Link
+              to="/auth"
+              className="mt-10 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all"
+            >
               Kom i gang i dag
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
