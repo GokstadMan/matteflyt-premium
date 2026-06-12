@@ -236,15 +236,15 @@ function Welcome({ onPick }: { onPick: (s: string) => void }) {
   );
 }
 
-type Part =
-  | { type: "text"; text: string }
-  | {
-      type: string;
-      toolCallId?: string;
-      state?: string;
-      input?: { expression: string; xMin: number; xMax: number; label: string };
-      output?: { expression: string; xMin: number; xMax: number; label: string };
-    };
+type TextPart = { type: "text"; text: string };
+type PlotPart = {
+  type: string;
+  toolCallId?: string;
+  state?: string;
+  input?: { expression: string; xMin: number; xMax: number; label: string };
+  output?: { expression: string; xMin: number; xMax: number; label: string };
+};
+type Part = TextPart | PlotPart;
 
 function MessageBubble({ message }: { message: UIMessage }) {
   const isUser = message.role === "user";
