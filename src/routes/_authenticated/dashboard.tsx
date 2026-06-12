@@ -275,7 +275,7 @@ function StatCard({
     >
       <div className="flex items-center gap-3">
         <span className="grid place-items-center h-10 w-10 rounded-xl gradient-premium-bg">
-          <Icon className="h-4.5 w-4.5 text-primary-foreground" />
+          <Icon className="h-4 w-4 text-primary-foreground" />
         </span>
         <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
           {label}
