@@ -262,11 +262,11 @@ function MessageBubble({ message }: { message: UIMessage }) {
         }
       >
         {(message.parts as Part[]).map((part, i) => {
-          if (part.type === "text") {
+          if (part.type === "text" && "text" in part) {
             if (isUser) {
               return (
                 <p key={i} className="whitespace-pre-wrap text-sm leading-relaxed">
-                  {part.text}
+                  {(part as TextPart).text}
                 </p>
               );
             }
@@ -275,7 +275,7 @@ function MessageBubble({ message }: { message: UIMessage }) {
                 key={i}
                 className="prose prose-sm max-w-none text-emerald-950 prose-headings:text-emerald-900 prose-strong:text-emerald-900 prose-code:rounded prose-code:bg-emerald-50 prose-code:px-1 prose-code:py-0.5 prose-code:text-emerald-800 prose-code:before:content-none prose-code:after:content-none prose-p:my-2 prose-li:my-0.5"
               >
-                <ReactMarkdown>{part.text}</ReactMarkdown>
+                <ReactMarkdown>{(part as TextPart).text}</ReactMarkdown>
               </div>
             );
           }
