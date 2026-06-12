@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
@@ -18,6 +18,7 @@ import {
   Youtube,
   Sigma,
 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,12 +69,21 @@ function Landing() {
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [authed, setAuthed] = useState(false);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 12);
     on();
     window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
+    supabase.auth.getSession().then(({ data }) => setAuthed(!!data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setAuthed(!!s));
+    return () => {
+      window.removeEventListener("scroll", on);
+      sub.subscription.unsubscribe();
+    };
   }, []);
+  const ctaTo = authed ? "/dashboard" : "/auth";
+  const ctaLabel = authed ? "Mitt dashboard" : "Kom i gang";
+
 
   return (
     <header
@@ -102,13 +112,21 @@ function Nav() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <button className="px-4 py-2 text-sm font-semibold rounded-full hover:bg-primary/5 transition">
-            Logg inn
-          </button>
-          <button className="group inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all">
-            Kom i gang
+          {!authed && (
+            <Link
+              to="/auth"
+              className="px-4 py-2 text-sm font-semibold rounded-full hover:bg-primary/5 transition"
+            >
+              Logg inn
+            </Link>
+          )}
+          <Link
+            to={ctaTo}
+            className="group inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all"
+          >
+            {ctaLabel}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition" />
-          </button>
+          </Link>
         </div>
 
         <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-primary/5">
@@ -129,10 +147,20 @@ function Nav() {
             </a>
           ))}
           <div className="flex gap-2 pt-2">
-            <button className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border">Logg inn</button>
-            <button className="flex-1 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground">
-              Kom i gang
-            </button>
+            {!authed && (
+              <Link
+                to="/auth"
+                className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border text-center"
+              >
+                Logg inn
+              </Link>
+            )}
+            <Link
+              to={ctaTo}
+              className="flex-1 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground text-center"
+            >
+              {ctaLabel}
+            </Link>
           </div>
         </div>
       )}
