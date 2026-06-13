@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedTutorRouteImport } from './routes/_authenticated/tutor'
+import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
 const AuthRoute = AuthRouteImport.update({
@@ -40,6 +41,11 @@ const AuthenticatedTutorRoute = AuthenticatedTutorRouteImport.update({
   path: '/tutor',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedQuizRoute = AuthenticatedQuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/quiz': typeof AuthenticatedQuizRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
 }
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/quiz': typeof AuthenticatedQuizRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
 }
@@ -66,20 +74,22 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/quiz': typeof AuthenticatedQuizRoute
   '/_authenticated/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/tutor' | '/api/chat'
+  fullPaths: '/' | '/auth' | '/dashboard' | '/quiz' | '/tutor' | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/tutor' | '/api/chat'
+  to: '/' | '/auth' | '/dashboard' | '/quiz' | '/tutor' | '/api/chat'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/dashboard'
+    | '/_authenticated/quiz'
     | '/_authenticated/tutor'
     | '/api/chat'
   fileRoutesById: FileRoutesById
@@ -128,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTutorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/quiz': {
+      id: '/_authenticated/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof AuthenticatedQuizRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -140,11 +157,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
   AuthenticatedTutorRoute: typeof AuthenticatedTutorRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedQuizRoute: AuthenticatedQuizRoute,
   AuthenticatedTutorRoute: AuthenticatedTutorRoute,
 }
 

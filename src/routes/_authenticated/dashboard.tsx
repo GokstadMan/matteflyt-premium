@@ -97,13 +97,22 @@ function Dashboard() {
           <p className="mt-2 text-muted-foreground">
             Du er på en {seed.streakDays}-dagers stripe. Fortsett sånn!
           </p>
-          <Link
-            to="/tutor"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-emerald-700"
-          >
-            <Sparkles className="h-4 w-4" /> Spør AI-mattelæreren Flytur
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              to="/tutor"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-emerald-700"
+            >
+              <Sparkles className="h-4 w-4" /> Spør AI-mattelæreren Flytur
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/quiz"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition hover:opacity-90"
+            >
+              <Target className="h-4 w-4" /> Start dagens quiz
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </motion.div>
 
         {/* Stats */}
