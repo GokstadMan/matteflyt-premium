@@ -19,6 +19,7 @@ import {
   Sigma,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/landing/Experiments";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -58,8 +59,8 @@ function Landing() {
       <Features />
       <HowItWorks />
       <Testimonials />
-      <Pricing />
-      <FinalCTA />
+      <PricingExperiment SectionHeader={SectionHeader} />
+      <FinalCTAExperiment />
       <Footer />
     </div>
   );
@@ -206,13 +207,8 @@ function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Link
-              to="/auth"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-soft hover:shadow-glow-navy hover:-translate-y-0.5 transition-all"
-            >
-              Start å lære gratis
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition" />
-            </Link>
+            <HeroCTA />
+
             <button className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
               <span className="grid place-items-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                 <Play className="h-3.5 w-3.5 ml-0.5" />

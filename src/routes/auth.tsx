@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Sigma, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
+import { flushPendingConversions } from "@/lib/ab";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
@@ -44,11 +45,13 @@ function AuthPage() {
           },
         });
         if (error) throw error;
+        await flushPendingConversions();
         toast.success("Konto opprettet! Sjekk e-posten din for å bekrefte.");
         navigate({ to: "/dashboard" });
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        await flushPendingConversions();
         toast.success("Velkommen tilbake!");
         navigate({ to: "/dashboard" });
       }
