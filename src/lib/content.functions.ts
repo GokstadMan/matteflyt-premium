@@ -137,8 +137,7 @@ export const completeLesson = createServerFn({ method: "POST" })
 export const recordQuizAttempt = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator(
-    (d: { quizId: string; score: number; total: number; xpEarned: number; details?: Record<string, unknown> }) =>
-      d,
+    (d: { quizId: string; score: number; total: number; xpEarned: number }) => d,
   )
   .handler(async ({ data, context }) => {
     const { error } = await context.supabase.from("quiz_attempts").insert({
@@ -147,7 +146,6 @@ export const recordQuizAttempt = createServerFn({ method: "POST" })
       score: data.score,
       total: data.total,
       xp_earned: data.xpEarned,
-      details: data.details ?? {},
     });
     if (error) throw new Error(error.message);
 
