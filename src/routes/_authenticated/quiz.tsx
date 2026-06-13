@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useServerFn } from "@tanstack/react-start";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Sigma,
   ArrowLeft,
@@ -13,6 +15,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { quizProblems } from "@/lib/quiz-seed";
+import { recordQuizAttempt } from "@/lib/content.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/quiz")({
