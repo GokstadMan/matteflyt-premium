@@ -420,9 +420,9 @@ function Stats() {
     { v: "200+", l: "Leksjoner" },
   ];
   return (
-    <section className="relative py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="glass-card rounded-3xl p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="relative py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {items.map((s, i) => (
             <motion.div
               key={s.l}
@@ -432,8 +432,8 @@ function Stats() {
               transition={{ delay: i * 0.08 }}
               className="text-center md:text-left"
             >
-              <div className="text-4xl md:text-5xl font-extrabold tracking-tight gradient-text">{s.v}</div>
-              <div className="mt-2 text-sm text-muted-foreground font-medium">{s.l}</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight gradient-text">{s.v}</div>
+              <div className="mt-2 text-xs sm:text-sm text-muted-foreground font-medium">{s.l}</div>
             </motion.div>
           ))}
         </div>
