@@ -50,7 +50,7 @@ export async function trackAB(
       event,
       visitor_id: visitor,
       user_id: u.user?.id ?? null,
-      metadata,
+      metadata: metadata as never,
     });
   } catch (e) {
     // silent — analytics must never break UX
