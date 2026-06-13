@@ -52,10 +52,11 @@ function QuizPage() {
     if (finished && !savedRef.current) {
       savedRef.current = true;
       saveAttempt({
-        data: { quizId: "daily-quiz-v1", score: correctCount, total, xpEarned: xp },
+        data: { quizId: "daily-quiz-v1", score: correctCount, total },
       })
-        .then(() => {
-          toast.success(`Lagret! +${xp} XP til kontoen din`);
+        .then((res) => {
+          const awarded = (res as { xpEarned?: number })?.xpEarned ?? xp;
+          toast.success(`Lagret! +${awarded} XP til kontoen din`);
           qc.invalidateQueries({ queryKey: ["user-stats"] });
         })
         .catch((e) => toast.error((e as Error).message));

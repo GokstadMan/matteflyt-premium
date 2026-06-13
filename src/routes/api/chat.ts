@@ -18,6 +18,19 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        // Cap raw body size to prevent token cost abuse.
+        const MAX_BODY_BYTES = 256 * 1024; // 256 KB
+        const MAX_MESSAGES = 30;
+        const MAX_MESSAGE_CHARS = 8000;
+        const contentLength = Number(request.headers.get("content-length") ?? 0);
+        if (contentLength && contentLength > MAX_BODY_BYTES) {
+          return new Response("Payload too large", { status: 413 });
+        }
+        const rawBody = await request.text();
+        if (rawBody.length > MAX_BODY_BYTES) {
+          return new Response("Payload too large", { status: 413 });
+        }
+
         const authHeader = request.headers.get("Authorization") ?? "";
         const token = authHeader.replace(/^Bearer\s+/i, "");
         if (!token) return new Response("Unauthorized", { status: 401 });
@@ -32,8 +45,33 @@ export const Route = createFileRoute("/api/chat")({
         if (userError || !userData.user) return new Response("Unauthorized", { status: 401 });
         const userId = userData.user.id;
 
-        const body = (await request.json()) as { messages: UIMessage[] };
-        const messages = body.messages;
+        let parsed: { messages?: UIMessage[] };
+        try {
+          parsed = JSON.parse(rawBody) as { messages?: UIMessage[] };
+        } catch {
+          return new Response("Invalid JSON", { status: 400 });
+        }
+        const incoming = Array.isArray(parsed.messages) ? parsed.messages : [];
+        // Only trust 'user' messages from the client — assistant/system roles
+        // could be forged to inject prompts. Cap count and per-message size.
+        const messages = incoming
+          .filter((m) => m && m.role === "user")
+          .slice(-MAX_MESSAGES)
+          .map((m) => {
+            const parts = Array.isArray(m.parts)
+              ? m.parts.map((p) => {
+                  if (p && typeof p === "object" && "text" in p && typeof (p as { text: unknown }).text === "string") {
+                    const text = (p as { text: string }).text.slice(0, MAX_MESSAGE_CHARS);
+                    return { ...p, text };
+                  }
+                  return p;
+                })
+              : m.parts;
+            return { ...m, parts } as UIMessage;
+          });
+        if (messages.length === 0) {
+          return new Response("No user message", { status: 400 });
+        }
 
         const lovableKey = process.env.LOVABLE_API_KEY;
         if (!lovableKey) return new Response("Missing LOVABLE_API_KEY", { status: 500 });

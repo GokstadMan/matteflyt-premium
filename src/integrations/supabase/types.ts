@@ -316,6 +316,23 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      award_xp_for: {
+        Args: { _user_id: string; _xp: number }
+        Returns: {
+          last_active_date: string | null
+          level: number
+          streak_days: number
+          updated_at: string
+          user_id: string
+          xp: number
+        }
+        SetofOptions: {
+          from: "*"
+          to: "user_stats"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       get_ab_stats: {
         Args: never
         Returns: {

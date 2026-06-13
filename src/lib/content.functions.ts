@@ -127,33 +127,66 @@ export const completeLesson = createServerFn({ method: "POST" })
       );
     if (error) throw new Error(error.message);
 
-    const { data: stats, error: xpErr } = await context.supabase.rpc("award_xp", {
-      _xp: lesson?.xp_reward ?? 10,
+    // award_xp is SECURITY DEFINER and EXECUTE is revoked from clients —
+    // call via service role with explicit user id.
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const xp = Math.min(Math.max(0, lesson?.xp_reward ?? 10), 200);
+    const { data: stats, error: xpErr } = await (supabaseAdmin.rpc as unknown as (
+      fn: string,
+      args: Record<string, unknown>,
+    ) => Promise<{ data: unknown; error: { message: string } | null }>)("award_xp_for", {
+      _user_id: context.userId,
+      _xp: xp,
     });
     if (xpErr) throw new Error(xpErr.message);
-    return { ok: true, stats };
+    return { ok: true as const, stats: (stats ?? null) as null | { user_id: string; xp: number; level: number; streak_days: number; last_active_date: string | null } };
   });
+
+// XP per correct quiz answer. Authoritative on the server — clients do NOT
+// supply the XP value. Hard upper bound prevents score-inflation abuse even
+// if score/total are inflated.
+const XP_PER_CORRECT_ANSWER = 10;
+const MAX_XP_PER_QUIZ_ATTEMPT = 200;
 
 export const recordQuizAttempt = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator(
-    (d: { quizId: string; score: number; total: number; xpEarned: number }) => d,
+    (d: { quizId: string; score: number; total: number }) => {
+      const quizId = String(d?.quizId ?? "").slice(0, 128);
+      const score = Math.max(0, Math.floor(Number(d?.score) || 0));
+      const total = Math.max(0, Math.floor(Number(d?.total) || 0));
+      if (!quizId) throw new Error("quizId required");
+      if (total > 1000) throw new Error("total too large");
+      const safeScore = Math.min(score, total);
+      return { quizId, score: safeScore, total };
+    },
   )
   .handler(async ({ data, context }) => {
+    // Server-side XP — never trust the client.
+    const xpEarned = Math.min(
+      data.score * XP_PER_CORRECT_ANSWER,
+      MAX_XP_PER_QUIZ_ATTEMPT,
+    );
+
     const { error } = await context.supabase.from("quiz_attempts").insert({
       user_id: context.userId,
       quiz_id: data.quizId,
       score: data.score,
       total: data.total,
-      xp_earned: data.xpEarned,
+      xp_earned: xpEarned,
     });
     if (error) throw new Error(error.message);
 
-    const { data: stats, error: xpErr } = await context.supabase.rpc("award_xp", {
-      _xp: data.xpEarned,
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: stats, error: xpErr } = await (supabaseAdmin.rpc as unknown as (
+      fn: string,
+      args: Record<string, unknown>,
+    ) => Promise<{ data: unknown; error: { message: string } | null }>)("award_xp_for", {
+      _user_id: context.userId,
+      _xp: xpEarned,
     });
     if (xpErr) throw new Error(xpErr.message);
-    return { ok: true, stats };
+    return { ok: true as const, stats: (stats ?? null) as null | { user_id: string; xp: number; level: number; streak_days: number; last_active_date: string | null }, xpEarned };
   });
 
 // ---------- ADMIN CRUD ----------
