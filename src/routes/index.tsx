@@ -471,7 +471,7 @@ function Features() {
           subtitle="Hvert verktøy i MathFlow er laget for å fjerne friksjon og erstatte den med innsikt."
         />
 
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6">
           {items.map((f, i) => (
             <motion.div
               key={f.title}
@@ -479,7 +479,7 @@ function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="group glass-card rounded-3xl p-8 hover:-translate-y-1 hover:shadow-glow-navy transition-all duration-300"
+              className="group glass-card rounded-3xl p-6 sm:p-8 hover:-translate-y-1 hover:shadow-glow-navy transition-all duration-300"
             >
               <span className="inline-grid place-items-center h-12 w-12 rounded-2xl gradient-premium-bg shadow-soft group-hover:scale-110 transition">
                 <f.icon className="h-5 w-5 text-primary-foreground" />
@@ -566,7 +566,7 @@ function Testimonials() {
     <section id="testimonials" className="py-16 sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Elsket av elever" title="Ekte fremgang, med deres egne ord" />
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
             <motion.div
               key={t.n}
@@ -574,7 +574,7 @@ function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-3xl p-7 hover:-translate-y-1 transition-all"
+              className="glass-card rounded-3xl p-6 sm:p-7 hover:-translate-y-1 transition-all"
             >
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, k) => (
@@ -639,7 +639,7 @@ function Pricing() {
           subtitle="Start gratis. Oppgrader når du er klar til å akselerere."
         />
 
-        <div className="mt-16 grid md:grid-cols-2 gap-6">
+        <div className="mt-10 sm:mt-16 grid md:grid-cols-2 gap-6">
           {plans.map((p, i) => (
             <motion.div
               key={p.name}
@@ -647,7 +647,7 @@ function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`relative rounded-3xl p-8 md:p-10 transition-all hover:-translate-y-1 ${
+              className={`relative rounded-3xl p-6 sm:p-8 md:p-10 transition-all hover:-translate-y-1 ${
                 p.featured ? "gradient-premium-bg text-primary-foreground shadow-glow-navy" : "glass-card"
               }`}
             >
