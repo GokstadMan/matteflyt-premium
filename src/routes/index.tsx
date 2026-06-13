@@ -463,8 +463,8 @@ function Features() {
   ];
 
   return (
-    <section id="features" className="py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="features" className="py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Funksjoner"
           title="Bygget for hvordan elever faktisk lærer"
@@ -505,8 +505,8 @@ function HowItWorks() {
     { n: "03", t: "Følg fremgangen", d: "Se rekken vokse og svake punkter forsvinne på ditt personlige dashbord." },
   ];
   return (
-    <section id="courses" className="py-28 bg-secondary/70">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="courses" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Slik fungerer det"
           title="Tre steg til mestring"
@@ -563,8 +563,8 @@ function Testimonials() {
     },
   ];
   return (
-    <section id="testimonials" className="py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="testimonials" className="py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Elsket av elever" title="Ekte fremgang, med deres egne ord" />
         <div className="mt-16 grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
@@ -631,8 +631,8 @@ function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-28 bg-secondary/70">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="pricing" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Priser"
           title="Enkle planer. Reell fremgang."
@@ -700,8 +700,8 @@ function Pricing() {
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
-    <section id="contact" className="py-28">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="contact" className="py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-[2.5rem] gradient-premium-bg px-8 py-20 md:p-24 text-center shadow-glow-navy">
           <div
             className="absolute inset-0 opacity-[0.08]"
