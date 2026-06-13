@@ -177,11 +177,16 @@ export const recordQuizAttempt = createServerFn({ method: "POST" })
     });
     if (error) throw new Error(error.message);
 
-    const { data: stats, error: xpErr } = await context.supabase.rpc("award_xp", {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: stats, error: xpErr } = await (supabaseAdmin.rpc as unknown as (
+      fn: string,
+      args: Record<string, unknown>,
+    ) => Promise<{ data: unknown; error: { message: string } | null }>)("award_xp_for", {
+      _user_id: context.userId,
       _xp: xpEarned,
     });
     if (xpErr) throw new Error(xpErr.message);
-    return { ok: true, stats, xpEarned };
+    return { ok: true as const, stats: (stats ?? null) as null | { user_id: string; xp: number; level: number; streak_days: number; last_active_date: string | null }, xpEarned };
   });
 
 // ---------- ADMIN CRUD ----------
