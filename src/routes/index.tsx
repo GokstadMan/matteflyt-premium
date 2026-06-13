@@ -91,15 +91,15 @@ function Nav() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-nav py-3" : "py-5 bg-transparent"
+        scrolled ? "glass-nav py-2 sm:py-3" : "py-3 sm:py-5 bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
-          <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg shadow-soft">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between gap-3">
+        <a href="#" className="flex items-center gap-2 group min-w-0 shrink-0">
+          <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg shadow-soft shrink-0">
             <Sigma className="h-5 w-5 text-primary-foreground" />
           </span>
-          <span className="text-lg font-bold tracking-tight">MathFlow</span>
+          <span className="text-lg font-bold tracking-tight truncate">MatteFlyt</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -132,35 +132,42 @@ function Nav() {
           </Link>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-primary/5">
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Lukk meny" : "Åpne meny"}
+          aria-expanded={open}
+          className="md:hidden inline-grid place-items-center h-11 w-11 rounded-xl hover:bg-primary/5 active:bg-primary/10"
+        >
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden mx-6 mt-3 glass-card rounded-2xl p-4 flex flex-col gap-1">
+        <div className="md:hidden mx-3 sm:mx-6 mt-3 glass-card rounded-2xl p-3 flex flex-col gap-1 shadow-soft">
           {nav.map((n) => (
             <a
               key={n.label}
               href={n.href}
               onClick={() => setOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-primary/5"
+              className="px-4 py-3 min-h-11 flex items-center rounded-xl text-base font-medium hover:bg-primary/5 active:bg-primary/10"
             >
               {n.label}
             </a>
           ))}
-          <div className="flex gap-2 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 pt-2">
             {!authed && (
               <Link
                 to="/auth"
-                className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border text-center"
+                onClick={() => setOpen(false)}
+                className="flex-1 py-3 min-h-11 text-sm font-semibold rounded-full border border-border text-center inline-flex items-center justify-center"
               >
                 Logg inn
               </Link>
             )}
             <Link
               to={ctaTo}
-              className="flex-1 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground text-center"
+              onClick={() => setOpen(false)}
+              className="flex-1 py-3 min-h-11 text-sm font-semibold rounded-full bg-primary text-primary-foreground text-center inline-flex items-center justify-center"
             >
               {ctaLabel}
             </Link>
