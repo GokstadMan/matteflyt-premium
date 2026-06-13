@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useServerFn } from "@tanstack/react-start";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Sigma,
   ArrowLeft,
@@ -13,6 +15,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { quizProblems } from "@/lib/quiz-seed";
+import { recordQuizAttempt } from "@/lib/content.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/quiz")({
@@ -31,10 +34,27 @@ function QuizPage() {
   const [xp, setXp] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
+  const saveAttempt = useServerFn(recordQuizAttempt);
+  const qc = useQueryClient();
+  const savedRef = useRef(false);
 
   const problem = quizProblems[idx];
   const total = quizProblems.length;
   const progress = useMemo(() => ((idx + (finished ? 1 : 0)) / total) * 100, [idx, finished, total]);
+
+  useEffect(() => {
+    if (finished && !savedRef.current) {
+      savedRef.current = true;
+      saveAttempt({
+        data: { quizId: "daily-quiz-v1", score: correctCount, total, xpEarned: xp },
+      })
+        .then(() => {
+          toast.success(`Lagret! +${xp} XP til kontoen din`);
+          qc.invalidateQueries({ queryKey: ["user-stats"] });
+        })
+        .catch((e) => toast.error((e as Error).message));
+    }
+  }, [finished, correctCount, xp, total, saveAttempt, qc]);
 
   function check() {
     if (!selected) return;
@@ -64,6 +84,7 @@ function QuizPage() {
   }
 
   function restart() {
+    savedRef.current = false;
     setIdx(0);
     setSelected(null);
     setStatus("idle");
