@@ -4,7 +4,13 @@ import { ArrowLeft, TrendingUp, ShieldAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/experiments")({
-  head: () => ({ meta: [{ title: "A/B-eksperimenter — MatteFlyt" }] }),
+  head: () => ({
+    meta: [
+      { title: "A/B-eksperimenter — MatteFlyt" },
+      { name: "description", content: "Se resultater fra pågående A/B-eksperimenter på landingssiden — CTR og konverteringer per variant." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: ExperimentsPage,
 });
 

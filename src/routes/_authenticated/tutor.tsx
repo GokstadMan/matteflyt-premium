@@ -13,7 +13,15 @@ import { toast } from "sonner";
 import tutorMascot from "@/assets/tutor-mascot.png";
 
 export const Route = createFileRoute("/_authenticated/tutor")({
-  head: () => ({ meta: [{ title: "AI Mattelærer — MatteFlyt" }] }),
+  head: () => ({
+    meta: [
+      { title: "AI Mattelærer — Få forklart matte steg for steg — MatteFlyt" },
+      { name: "description", content: "Still hvilket som helst mattespørsmål og få en forklaring steg for steg, med funksjonsgrafer og intuitive eksempler." },
+      { property: "og:title", content: "AI Mattelærer — MatteFlyt" },
+      { property: "og:description", content: "Få mattehjelp i sanntid med forklaringer steg for steg og interaktive grafer." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: TutorPage,
 });
 

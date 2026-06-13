@@ -10,9 +10,13 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Logg inn — MatteFlyt" },
-      { name: "description", content: "Logg inn eller registrer deg på MatteFlyt og start din matematiske reise." },
+      { title: "Logg inn eller registrer deg — MatteFlyt" },
+      { name: "description", content: "Logg inn eller opprett en gratis konto på MatteFlyt og start din matematiske reise med AI-veiledning." },
+      { property: "og:title", content: "Logg inn eller registrer deg — MatteFlyt" },
+      { property: "og:description", content: "Logg inn eller opprett en gratis konto på MatteFlyt og start din matematiske reise med AI-veiledning." },
+      { property: "og:url", content: "/auth" },
     ],
+    links: [{ rel: "canonical", href: "/auth" }],
   }),
   component: AuthPage,
 });

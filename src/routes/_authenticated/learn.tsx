@@ -6,7 +6,13 @@ import { motion } from "framer-motion";
 import { listCourses, getProgress } from "@/lib/content.functions";
 
 export const Route = createFileRoute("/_authenticated/learn")({
-  head: () => ({ meta: [{ title: "Læringsbibliotek — MatteFlyt" }] }),
+  head: () => ({
+    meta: [
+      { title: "Læringsbibliotek — Alle mattekurs — MatteFlyt" },
+      { name: "description", content: "Utforsk alle kurs i MatteFlyt-biblioteket. Algebra, geometri, trigonometri og mer — fortsett der du slapp." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: LearnPage,
 });
 

@@ -7,7 +7,13 @@ import { toast } from "sonner";
 import { listLessons, getProgress, completeLesson, listCourses } from "@/lib/content.functions";
 
 export const Route = createFileRoute("/_authenticated/learn/$courseId")({
-  head: () => ({ meta: [{ title: "Kurs — MatteFlyt" }] }),
+  head: () => ({
+    meta: [
+      { title: "Kurs — Leksjoner og fremgang — MatteFlyt" },
+      { name: "description", content: "Følg leksjon for leksjon, marker fullført og tjen XP mens du jobber deg gjennom kurset." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: CoursePage,
 });
 

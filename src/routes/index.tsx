@@ -24,20 +24,22 @@ import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/lan
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MathFlow — Mestre matematikk" },
+      { title: "MatteFlyt — AI-mattelærer som forklarer steg for steg" },
       {
         name: "description",
         content:
-          "Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger som hjelper elever å lære matte raskere.",
+          "Lær matte raskere med interaktive leksjoner, quizer og en personlig AI-tutor som forklarer hver løsning steg for steg.",
       },
-      { property: "og:title", content: "MathFlow — Mestre matematikk" },
+      { property: "og:title", content: "MatteFlyt — AI-mattelærer som forklarer steg for steg" },
       {
         property: "og:description",
         content:
-          "Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger som hjelper elever å lære matte raskere.",
+          "Lær matte raskere med interaktive leksjoner, quizer og en personlig AI-tutor som forklarer hver løsning steg for steg.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Landing,
 });
