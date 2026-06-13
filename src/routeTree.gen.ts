@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedTutorRouteImport } from './routes/_authenticated/tutor'
 import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
+import { Route as AuthenticatedExperimentsRouteImport } from './routes/_authenticated/experiments'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
 const AuthRoute = AuthRouteImport.update({
@@ -46,6 +47,12 @@ const AuthenticatedQuizRoute = AuthenticatedQuizRouteImport.update({
   path: '/quiz',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedExperimentsRoute =
+  AuthenticatedExperimentsRouteImport.update({
+    id: '/experiments',
+    path: '/experiments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -56,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/experiments': typeof AuthenticatedExperimentsRoute
   '/quiz': typeof AuthenticatedQuizRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
@@ -64,6 +72,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/experiments': typeof AuthenticatedExperimentsRoute
   '/quiz': typeof AuthenticatedQuizRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
@@ -74,21 +83,37 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/experiments': typeof AuthenticatedExperimentsRoute
   '/_authenticated/quiz': typeof AuthenticatedQuizRoute
   '/_authenticated/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/quiz' | '/tutor' | '/api/chat'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/experiments'
+    | '/quiz'
+    | '/tutor'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/quiz' | '/tutor' | '/api/chat'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/experiments'
+    | '/quiz'
+    | '/tutor'
+    | '/api/chat'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/dashboard'
+    | '/_authenticated/experiments'
     | '/_authenticated/quiz'
     | '/_authenticated/tutor'
     | '/api/chat'
@@ -145,6 +170,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedQuizRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/experiments': {
+      id: '/_authenticated/experiments'
+      path: '/experiments'
+      fullPath: '/experiments'
+      preLoaderRoute: typeof AuthenticatedExperimentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -157,12 +189,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedExperimentsRoute: typeof AuthenticatedExperimentsRoute
   AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
   AuthenticatedTutorRoute: typeof AuthenticatedTutorRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedExperimentsRoute: AuthenticatedExperimentsRoute,
   AuthenticatedQuizRoute: AuthenticatedQuizRoute,
   AuthenticatedTutorRoute: AuthenticatedTutorRoute,
 }
@@ -179,3 +213,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
