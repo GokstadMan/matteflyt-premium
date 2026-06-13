@@ -71,6 +71,124 @@ export type Database = {
         }
         Relationships: []
       }
+      courses: {
+        Row: {
+          created_at: string
+          description: string | null
+          difficulty: string
+          id: string
+          published: boolean
+          sort_order: number
+          title: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          difficulty?: string
+          id?: string
+          published?: boolean
+          sort_order?: number
+          title: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          difficulty?: string
+          id?: string
+          published?: boolean
+          sort_order?: number
+          title?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      lesson_progress: {
+        Row: {
+          completed: boolean
+          completed_at: string
+          id: string
+          lesson_id: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          completed_at?: string
+          id?: string
+          lesson_id: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          completed_at?: string
+          id?: string
+          lesson_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          body: string | null
+          course_id: string
+          created_at: string
+          duration_minutes: number
+          id: string
+          published: boolean
+          sort_order: number
+          title: string
+          updated_at: string
+          video_url: string | null
+          xp_reward: number
+        }
+        Insert: {
+          body?: string | null
+          course_id: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          published?: boolean
+          sort_order?: number
+          title: string
+          updated_at?: string
+          video_url?: string | null
+          xp_reward?: number
+        }
+        Update: {
+          body?: string | null
+          course_id?: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          published?: boolean
+          sort_order?: number
+          title?: string
+          updated_at?: string
+          video_url?: string | null
+          xp_reward?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -89,6 +207,42 @@ export type Database = {
           full_name?: string | null
           id?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          created_at: string
+          details: Json
+          id: string
+          problem_id: string | null
+          quiz_id: string
+          score: number
+          total: number
+          user_id: string
+          xp_earned: number
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          id?: string
+          problem_id?: string | null
+          quiz_id: string
+          score?: number
+          total?: number
+          user_id: string
+          xp_earned?: number
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          id?: string
+          problem_id?: string | null
+          quiz_id?: string
+          score?: number
+          total?: number
+          user_id?: string
+          xp_earned?: number
         }
         Relationships: []
       }
@@ -113,11 +267,55 @@ export type Database = {
         }
         Relationships: []
       }
+      user_stats: {
+        Row: {
+          last_active_date: string | null
+          level: number
+          streak_days: number
+          updated_at: string
+          user_id: string
+          xp: number
+        }
+        Insert: {
+          last_active_date?: string | null
+          level?: number
+          streak_days?: number
+          updated_at?: string
+          user_id: string
+          xp?: number
+        }
+        Update: {
+          last_active_date?: string | null
+          level?: number
+          streak_days?: number
+          updated_at?: string
+          user_id?: string
+          xp?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      award_xp: {
+        Args: { _xp: number }
+        Returns: {
+          last_active_date: string | null
+          level: number
+          streak_days: number
+          updated_at: string
+          user_id: string
+          xp: number
+        }
+        SetofOptions: {
+          from: "*"
+          to: "user_stats"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       get_ab_stats: {
         Args: never
         Returns: {
