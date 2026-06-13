@@ -19,6 +19,7 @@ import {
   Sigma,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useExperiment, queuePendingConversion } from "@/lib/ab";
 
 export const Route = createFileRoute("/")({
   head: () => ({
