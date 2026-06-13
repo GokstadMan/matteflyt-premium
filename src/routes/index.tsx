@@ -19,7 +19,7 @@ import {
   Sigma,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { useExperiment, queuePendingConversion } from "@/lib/ab";
+import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/landing/Experiments";
 
 export const Route = createFileRoute("/")({
   head: () => ({
