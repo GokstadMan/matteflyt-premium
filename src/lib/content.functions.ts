@@ -131,7 +131,10 @@ export const completeLesson = createServerFn({ method: "POST" })
     // call via service role with explicit user id.
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const xp = Math.min(Math.max(0, lesson?.xp_reward ?? 10), 200);
-    const { data: stats, error: xpErr } = await supabaseAdmin.rpc("award_xp_for", {
+    const { data: stats, error: xpErr } = await (supabaseAdmin.rpc as unknown as (
+      fn: string,
+      args: Record<string, unknown>,
+    ) => Promise<{ data: unknown; error: { message: string } | null }>)("award_xp_for", {
       _user_id: context.userId,
       _xp: xp,
     });
