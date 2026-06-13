@@ -513,7 +513,7 @@ function HowItWorks() {
           subtitle="En fokusert sløyfe designet av lærere og ingeniører."
         />
 
-        <div className="mt-16 relative grid md:grid-cols-3 gap-8">
+        <div className="mt-10 sm:mt-16 relative grid md:grid-cols-3 gap-10 sm:gap-8">
           <div className="hidden md:block absolute top-7 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           {steps.map((s, i) => (
             <motion.div
