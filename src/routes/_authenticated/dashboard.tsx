@@ -1,5 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { motion } from "framer-motion";
 import {
   Sigma,
@@ -13,9 +15,12 @@ import {
   CheckCircle2,
   Lock,
   TrendingUp,
+  BookOpen,
+  Settings,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { dashboardSeed } from "@/lib/dashboard-seed";
+import { getUserStats } from "@/lib/content.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
