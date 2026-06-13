@@ -415,7 +415,7 @@ function HeroIllustration() {
 function Stats() {
   const items = [
     { v: "\n", l: "Oppgaver løst" },
-    { v: "10 000+", l: "Elever" },
+    { v: "\n", l: "Elever" },
     { v: "95%", l: "Tilfredshet" },
     { v: "200+", l: "Leksjoner" },
   ];
