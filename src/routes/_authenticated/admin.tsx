@@ -20,7 +20,13 @@ import {
 } from "@/lib/content.functions";
 
 export const Route = createFileRoute("/_authenticated/admin")({
-  head: () => ({ meta: [{ title: "Admin — MatteFlyt" }] }),
+  head: () => ({
+    meta: [
+      { title: "Admin — Kurs og leksjoner — MatteFlyt" },
+      { name: "description", content: "Administrer kurs og leksjoner i MatteFlyt-bibliotektet." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: AdminPage,
 });
 
