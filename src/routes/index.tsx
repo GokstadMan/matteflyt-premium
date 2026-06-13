@@ -417,7 +417,7 @@ function Stats() {
     { v: "\n", l: "Oppgaver løst" },
     { v: "\n", l: "Elever" },
     { v: "\n", l: "Tilfredshet" },
-    { v: "200+", l: "Leksjoner" },
+    { v: "\n", l: "Leksjoner" },
   ];
   return (
     <section className="relative py-14 sm:py-20">
