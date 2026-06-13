@@ -19,7 +19,13 @@ import { recordQuizAttempt } from "@/lib/content.functions";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/quiz")({
-  head: () => ({ meta: [{ title: "Quiz — MatteFlyt" }] }),
+  head: () => ({
+    meta: [
+      { title: "Quiz — Øv på matteoppgaver med hint og fasit — MatteFlyt" },
+      { name: "description", content: "Test kunnskapen din med interaktive quizer, få hint steg for steg og umiddelbar tilbakemelding på hver oppgave." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: QuizPage,
 });
 
