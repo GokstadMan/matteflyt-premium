@@ -91,15 +91,15 @@ function Nav() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-nav py-3" : "py-5 bg-transparent"
+        scrolled ? "glass-nav py-2 sm:py-3" : "py-3 sm:py-5 bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
-          <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg shadow-soft">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between gap-3">
+        <a href="#" className="flex items-center gap-2 group min-w-0 shrink-0">
+          <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg shadow-soft shrink-0">
             <Sigma className="h-5 w-5 text-primary-foreground" />
           </span>
-          <span className="text-lg font-bold tracking-tight">MathFlow</span>
+          <span className="text-lg font-bold tracking-tight truncate">MatteFlyt</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -132,35 +132,42 @@ function Nav() {
           </Link>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-primary/5">
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Lukk meny" : "Åpne meny"}
+          aria-expanded={open}
+          className="md:hidden inline-grid place-items-center h-11 w-11 rounded-xl hover:bg-primary/5 active:bg-primary/10"
+        >
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden mx-6 mt-3 glass-card rounded-2xl p-4 flex flex-col gap-1">
+        <div className="md:hidden mx-3 sm:mx-6 mt-3 glass-card rounded-2xl p-3 flex flex-col gap-1 shadow-soft">
           {nav.map((n) => (
             <a
               key={n.label}
               href={n.href}
               onClick={() => setOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-primary/5"
+              className="px-4 py-3 min-h-11 flex items-center rounded-xl text-base font-medium hover:bg-primary/5 active:bg-primary/10"
             >
               {n.label}
             </a>
           ))}
-          <div className="flex gap-2 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 pt-2">
             {!authed && (
               <Link
                 to="/auth"
-                className="flex-1 py-2.5 text-sm font-semibold rounded-full border border-border text-center"
+                onClick={() => setOpen(false)}
+                className="flex-1 py-3 min-h-11 text-sm font-semibold rounded-full border border-border text-center inline-flex items-center justify-center"
               >
                 Logg inn
               </Link>
             )}
             <Link
               to={ctaTo}
-              className="flex-1 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground text-center"
+              onClick={() => setOpen(false)}
+              className="flex-1 py-3 min-h-11 text-sm font-semibold rounded-full bg-primary text-primary-foreground text-center inline-flex items-center justify-center"
             >
               {ctaLabel}
             </Link>
@@ -177,7 +184,7 @@ function Hero() {
   const y = useTransform(scrollY, [0, 600], [0, 80]);
 
   return (
-    <section className="relative min-h-screen gradient-hero-bg pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-screen gradient-hero-bg pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
@@ -188,7 +195,7 @@ function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -199,19 +206,19 @@ function Hero() {
             Brukt av 10 000+ elever
           </div>
 
-          <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">
+          <h1 className="mt-5 sm:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
             Mestre matematikk
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-5 sm:mt-6 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
             Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger laget for å hjelpe elever å lære
             raskere.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
             <HeroCTA />
 
-            <button className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-12 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
               <span className="grid place-items-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                 <Play className="h-3.5 w-3.5 ml-0.5" />
               </span>
@@ -219,8 +226,8 @@ function Hero() {
             </button>
           </div>
 
-          <div className="mt-10 flex items-center gap-5 text-sm text-muted-foreground">
-            <div className="flex -space-x-2">
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5 text-sm text-muted-foreground">
+            <div className="flex -space-x-2 shrink-0">
               {["A", "B", "C", "D"].map((c, i) => (
                 <div
                   key={c}
@@ -235,7 +242,7 @@ function Hero() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 flex-wrap">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-primary text-primary" />
               ))}
@@ -245,7 +252,7 @@ function Hero() {
           </div>
         </motion.div>
 
-        <motion.div style={{ y }} className="relative h-[520px] lg:h-[600px]">
+        <motion.div style={{ y }} className="relative h-[380px] sm:h-[460px] md:h-[520px] lg:h-[600px]">
           <HeroIllustration />
         </motion.div>
       </div>
@@ -413,9 +420,9 @@ function Stats() {
     { v: "200+", l: "Leksjoner" },
   ];
   return (
-    <section className="relative py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="glass-card rounded-3xl p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="relative py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {items.map((s, i) => (
             <motion.div
               key={s.l}
@@ -425,8 +432,8 @@ function Stats() {
               transition={{ delay: i * 0.08 }}
               className="text-center md:text-left"
             >
-              <div className="text-4xl md:text-5xl font-extrabold tracking-tight gradient-text">{s.v}</div>
-              <div className="mt-2 text-sm text-muted-foreground font-medium">{s.l}</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight gradient-text">{s.v}</div>
+              <div className="mt-2 text-xs sm:text-sm text-muted-foreground font-medium">{s.l}</div>
             </motion.div>
           ))}
         </div>
@@ -456,15 +463,15 @@ function Features() {
   ];
 
   return (
-    <section id="features" className="py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="features" className="py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Funksjoner"
           title="Bygget for hvordan elever faktisk lærer"
-          subtitle="Hvert verktøy i MathFlow er laget for å fjerne friksjon og erstatte den med innsikt."
+          subtitle="Hvert verktøy i MatteFlyt er laget for å fjerne friksjon og erstatte den med innsikt."
         />
 
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6">
           {items.map((f, i) => (
             <motion.div
               key={f.title}
@@ -472,7 +479,7 @@ function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="group glass-card rounded-3xl p-8 hover:-translate-y-1 hover:shadow-glow-navy transition-all duration-300"
+              className="group glass-card rounded-3xl p-6 sm:p-8 hover:-translate-y-1 hover:shadow-glow-navy transition-all duration-300"
             >
               <span className="inline-grid place-items-center h-12 w-12 rounded-2xl gradient-premium-bg shadow-soft group-hover:scale-110 transition">
                 <f.icon className="h-5 w-5 text-primary-foreground" />
@@ -498,15 +505,15 @@ function HowItWorks() {
     { n: "03", t: "Følg fremgangen", d: "Se rekken vokse og svake punkter forsvinne på ditt personlige dashbord." },
   ];
   return (
-    <section id="courses" className="py-28 bg-secondary/70">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="courses" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Slik fungerer det"
           title="Tre steg til mestring"
           subtitle="En fokusert sløyfe designet av lærere og ingeniører."
         />
 
-        <div className="mt-16 relative grid md:grid-cols-3 gap-8">
+        <div className="mt-10 sm:mt-16 relative grid md:grid-cols-3 gap-10 sm:gap-8">
           <div className="hidden md:block absolute top-7 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           {steps.map((s, i) => (
             <motion.div
@@ -536,7 +543,7 @@ function Testimonials() {
     {
       n: "Amelia Chen",
       r: "Elev, matematikk R2",
-      q: "MathFlow fikk endelig integraler til å gi mening. De visuelle grafene er som intet jeg har sett i læreboka.",
+      q: "MatteFlyt fikk endelig integraler til å gi mening. De visuelle grafene er som intet jeg har sett i læreboka.",
       i: "AC",
       g: "linear-gradient(135deg,#0ea5e9,#22d3ee)",
     },
@@ -550,16 +557,16 @@ function Testimonials() {
     {
       n: "Priya Raman",
       r: "Førsteårs ingeniørstudent",
-      q: "Jeg bruker MathFlow som oppvarming før forelesning. Det betaler seg hver uke.",
+      q: "Jeg bruker MatteFlyt som oppvarming før forelesning. Det betaler seg hver uke.",
       i: "PR",
       g: "linear-gradient(135deg,#7c3aed,#ec4899)",
     },
   ];
   return (
-    <section id="testimonials" className="py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="testimonials" className="py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Elsket av elever" title="Ekte fremgang, med deres egne ord" />
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
             <motion.div
               key={t.n}
@@ -567,7 +574,7 @@ function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-3xl p-7 hover:-translate-y-1 transition-all"
+              className="glass-card rounded-3xl p-6 sm:p-7 hover:-translate-y-1 transition-all"
             >
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, k) => (
@@ -624,15 +631,15 @@ function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-28 bg-secondary/70">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="pricing" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Priser"
           title="Enkle planer. Reell fremgang."
           subtitle="Start gratis. Oppgrader når du er klar til å akselerere."
         />
 
-        <div className="mt-16 grid md:grid-cols-2 gap-6">
+        <div className="mt-10 sm:mt-16 grid md:grid-cols-2 gap-6">
           {plans.map((p, i) => (
             <motion.div
               key={p.name}
@@ -640,7 +647,7 @@ function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`relative rounded-3xl p-8 md:p-10 transition-all hover:-translate-y-1 ${
+              className={`relative rounded-3xl p-6 sm:p-8 md:p-10 transition-all hover:-translate-y-1 ${
                 p.featured ? "gradient-premium-bg text-primary-foreground shadow-glow-navy" : "glass-card"
               }`}
             >
@@ -693,9 +700,9 @@ function Pricing() {
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
-    <section id="contact" className="py-28">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="relative overflow-hidden rounded-[2.5rem] gradient-premium-bg px-8 py-20 md:p-24 text-center shadow-glow-navy">
+    <section id="contact" className="py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] gradient-premium-bg px-6 py-14 sm:px-8 sm:py-20 md:p-24 text-center shadow-glow-navy">
           <div
             className="absolute inset-0 opacity-[0.08]"
             style={{
@@ -708,12 +715,12 @@ function FinalCTA() {
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[oklch(0.6_0.18_220_/_0.35)] blur-3xl" />
 
           <div className="relative">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
               Klar til å forvandle <br className="hidden md:block" />
               matteferdighetene dine?
             </h2>
-            <p className="mt-6 max-w-xl mx-auto text-primary-foreground/75">
-              Bli med 10 000+ elever som allerede lærer raskere med MathFlow.
+            <p className="mt-5 sm:mt-6 max-w-xl mx-auto text-sm sm:text-base text-primary-foreground/80">
+              Bli med 10 000+ elever som allerede lærer raskere med MatteFlyt.
             </p>
             <Link
               to="/auth"
@@ -738,13 +745,13 @@ function Footer() {
   ];
   return (
     <footer className="border-t border-border bg-secondary/60">
-      <div className="mx-auto max-w-7xl px-6 py-16 grid lg:grid-cols-5 gap-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16 grid sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2">
             <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg">
               <Sigma className="h-5 w-5 text-primary-foreground" />
             </span>
-            <span className="text-lg font-bold tracking-tight">MathFlow</span>
+            <span className="text-lg font-bold tracking-tight">MatteFlyt</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
             Visuell og interaktiv matematikklæring for den neste generasjonen nysgjerrige sinn.
@@ -778,8 +785,8 @@ function Footer() {
         ))}
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} MathFlow. Alle rettigheter reservert.</div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+          <div>© {new Date().getFullYear()} MatteFlyt. Alle rettigheter reservert.</div>
           <div className="flex gap-5">
             <a href="#" className="hover:text-foreground">
               Personvern
@@ -800,12 +807,12 @@ function Footer() {
 /* ───────────────────────── HELPERS ───────────────────────── */
 function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
-    <div className="text-center max-w-2xl mx-auto">
+    <div className="text-center max-w-2xl mx-auto px-2">
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-xs font-semibold uppercase tracking-wider text-primary">
         {eyebrow}
       </div>
-      <h2 className="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">{title}</h2>
-      {subtitle && <p className="mt-5 text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
+      <h2 className="mt-4 sm:mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">{title}</h2>
+      {subtitle && <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
     </div>
   );
 }
