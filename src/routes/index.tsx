@@ -416,7 +416,7 @@ function Stats() {
   const items = [
     { v: "\n", l: "Oppgaver løst" },
     { v: "\n", l: "Elever" },
-    { v: "95%", l: "Tilfredshet" },
+    { v: "\n", l: "Tilfredshet" },
     { v: "200+", l: "Leksjoner" },
   ];
   return (
