@@ -18,6 +18,7 @@ import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/q
 import { Route as AuthenticatedLearnRouteImport } from './routes/_authenticated/learn'
 import { Route as AuthenticatedExperimentsRouteImport } from './routes/_authenticated/experiments'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedLearnCourseIdRouteImport } from './routes/_authenticated/learn.$courseId'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -64,26 +65,34 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedLearnCourseIdRoute =
+  AuthenticatedLearnCourseIdRouteImport.update({
+    id: '/$courseId',
+    path: '/$courseId',
+    getParentRoute: () => AuthenticatedLearnRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/experiments': typeof AuthenticatedExperimentsRoute
-  '/learn': typeof AuthenticatedLearnRoute
+  '/learn': typeof AuthenticatedLearnRouteWithChildren
   '/quiz': typeof AuthenticatedQuizRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
+  '/learn/$courseId': typeof AuthenticatedLearnCourseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/experiments': typeof AuthenticatedExperimentsRoute
-  '/learn': typeof AuthenticatedLearnRoute
+  '/learn': typeof AuthenticatedLearnRouteWithChildren
   '/quiz': typeof AuthenticatedQuizRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
+  '/learn/$courseId': typeof AuthenticatedLearnCourseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -92,10 +101,11 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/experiments': typeof AuthenticatedExperimentsRoute
-  '/_authenticated/learn': typeof AuthenticatedLearnRoute
+  '/_authenticated/learn': typeof AuthenticatedLearnRouteWithChildren
   '/_authenticated/quiz': typeof AuthenticatedQuizRoute
   '/_authenticated/tutor': typeof AuthenticatedTutorRoute
   '/api/chat': typeof ApiChatRoute
+  '/_authenticated/learn/$courseId': typeof AuthenticatedLearnCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/tutor'
     | '/api/chat'
+    | '/learn/$courseId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/tutor'
     | '/api/chat'
+    | '/learn/$courseId'
   id:
     | '__root__'
     | '/'
@@ -129,6 +141,7 @@ export interface FileRouteTypes {
     | '/_authenticated/quiz'
     | '/_authenticated/tutor'
     | '/api/chat'
+    | '/_authenticated/learn/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -203,13 +216,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/learn/$courseId': {
+      id: '/_authenticated/learn/$courseId'
+      path: '/$courseId'
+      fullPath: '/learn/$courseId'
+      preLoaderRoute: typeof AuthenticatedLearnCourseIdRouteImport
+      parentRoute: typeof AuthenticatedLearnRoute
+    }
   }
 }
+
+interface AuthenticatedLearnRouteChildren {
+  AuthenticatedLearnCourseIdRoute: typeof AuthenticatedLearnCourseIdRoute
+}
+
+const AuthenticatedLearnRouteChildren: AuthenticatedLearnRouteChildren = {
+  AuthenticatedLearnCourseIdRoute: AuthenticatedLearnCourseIdRoute,
+}
+
+const AuthenticatedLearnRouteWithChildren =
+  AuthenticatedLearnRoute._addFileChildren(AuthenticatedLearnRouteChildren)
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedExperimentsRoute: typeof AuthenticatedExperimentsRoute
-  AuthenticatedLearnRoute: typeof AuthenticatedLearnRoute
+  AuthenticatedLearnRoute: typeof AuthenticatedLearnRouteWithChildren
   AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
   AuthenticatedTutorRoute: typeof AuthenticatedTutorRoute
 }
@@ -217,7 +248,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedExperimentsRoute: AuthenticatedExperimentsRoute,
-  AuthenticatedLearnRoute: AuthenticatedLearnRoute,
+  AuthenticatedLearnRoute: AuthenticatedLearnRouteWithChildren,
   AuthenticatedQuizRoute: AuthenticatedQuizRoute,
   AuthenticatedTutorRoute: AuthenticatedTutorRoute,
 }
