@@ -84,6 +84,7 @@ function QuizPage() {
   }
 
   function restart() {
+    savedRef.current = false;
     setIdx(0);
     setSelected(null);
     setStatus("idle");
