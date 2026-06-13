@@ -127,8 +127,13 @@ export const completeLesson = createServerFn({ method: "POST" })
       );
     if (error) throw new Error(error.message);
 
-    const { data: stats, error: xpErr } = await context.supabase.rpc("award_xp", {
-      _xp: lesson?.xp_reward ?? 10,
+    // award_xp is SECURITY DEFINER and EXECUTE is revoked from clients —
+    // call via service role with explicit user id.
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const xp = Math.min(Math.max(0, lesson?.xp_reward ?? 10), 200);
+    const { data: stats, error: xpErr } = await supabaseAdmin.rpc("award_xp_for", {
+      _user_id: context.userId,
+      _xp: xp,
     });
     if (xpErr) throw new Error(xpErr.message);
     return { ok: true, stats };
