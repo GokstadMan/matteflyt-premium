@@ -134,26 +134,46 @@ export const completeLesson = createServerFn({ method: "POST" })
     return { ok: true, stats };
   });
 
+// XP per correct quiz answer. Authoritative on the server — clients do NOT
+// supply the XP value. Hard upper bound prevents score-inflation abuse even
+// if score/total are inflated.
+const XP_PER_CORRECT_ANSWER = 10;
+const MAX_XP_PER_QUIZ_ATTEMPT = 200;
+
 export const recordQuizAttempt = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator(
-    (d: { quizId: string; score: number; total: number; xpEarned: number }) => d,
+    (d: { quizId: string; score: number; total: number }) => {
+      const quizId = String(d?.quizId ?? "").slice(0, 128);
+      const score = Math.max(0, Math.floor(Number(d?.score) || 0));
+      const total = Math.max(0, Math.floor(Number(d?.total) || 0));
+      if (!quizId) throw new Error("quizId required");
+      if (total > 1000) throw new Error("total too large");
+      const safeScore = Math.min(score, total);
+      return { quizId, score: safeScore, total };
+    },
   )
   .handler(async ({ data, context }) => {
+    // Server-side XP — never trust the client.
+    const xpEarned = Math.min(
+      data.score * XP_PER_CORRECT_ANSWER,
+      MAX_XP_PER_QUIZ_ATTEMPT,
+    );
+
     const { error } = await context.supabase.from("quiz_attempts").insert({
       user_id: context.userId,
       quiz_id: data.quizId,
       score: data.score,
       total: data.total,
-      xp_earned: data.xpEarned,
+      xp_earned: xpEarned,
     });
     if (error) throw new Error(error.message);
 
     const { data: stats, error: xpErr } = await context.supabase.rpc("award_xp", {
-      _xp: data.xpEarned,
+      _xp: xpEarned,
     });
     if (xpErr) throw new Error(xpErr.message);
-    return { ok: true, stats };
+    return { ok: true, stats, xpEarned };
   });
 
 // ---------- ADMIN CRUD ----------
