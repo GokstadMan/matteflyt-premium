@@ -139,7 +139,7 @@ export const completeLesson = createServerFn({ method: "POST" })
       _xp: xp,
     });
     if (xpErr) throw new Error(xpErr.message);
-    return { ok: true, stats };
+    return { ok: true, stats: stats as Record<string, unknown> | null };
   });
 
 // XP per correct quiz answer. Authoritative on the server — clients do NOT
