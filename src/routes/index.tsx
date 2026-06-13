@@ -807,12 +807,12 @@ function Footer() {
 /* ───────────────────────── HELPERS ───────────────────────── */
 function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
-    <div className="text-center max-w-2xl mx-auto">
+    <div className="text-center max-w-2xl mx-auto px-2">
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-xs font-semibold uppercase tracking-wider text-primary">
         {eyebrow}
       </div>
-      <h2 className="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">{title}</h2>
-      {subtitle && <p className="mt-5 text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
+      <h2 className="mt-4 sm:mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">{title}</h2>
+      {subtitle && <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
     </div>
   );
 }
