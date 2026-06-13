@@ -468,7 +468,7 @@ function Features() {
         <SectionHeader
           eyebrow="Funksjoner"
           title="Bygget for hvordan elever faktisk lærer"
-          subtitle="Hvert verktøy i MathFlow er laget for å fjerne friksjon og erstatte den med innsikt."
+          subtitle="Hvert verktøy i MatteFlyt er laget for å fjerne friksjon og erstatte den med innsikt."
         />
 
         <div className="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6">
@@ -745,13 +745,13 @@ function Footer() {
   ];
   return (
     <footer className="border-t border-border bg-secondary/60">
-      <div className="mx-auto max-w-7xl px-6 py-16 grid lg:grid-cols-5 gap-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16 grid sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2">
             <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg">
               <Sigma className="h-5 w-5 text-primary-foreground" />
             </span>
-            <span className="text-lg font-bold tracking-tight">MathFlow</span>
+            <span className="text-lg font-bold tracking-tight">MatteFlyt</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
             Visuell og interaktiv matematikklæring for den neste generasjonen nysgjerrige sinn.
@@ -785,8 +785,8 @@ function Footer() {
         ))}
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} MathFlow. Alle rettigheter reservert.</div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+          <div>© {new Date().getFullYear()} MatteFlyt. Alle rettigheter reservert.</div>
           <div className="flex gap-5">
             <a href="#" className="hover:text-foreground">
               Personvern
