@@ -702,7 +702,7 @@ function FinalCTA() {
   return (
     <section id="contact" className="py-16 sm:py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2.5rem] gradient-premium-bg px-8 py-20 md:p-24 text-center shadow-glow-navy">
+        <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] gradient-premium-bg px-6 py-14 sm:px-8 sm:py-20 md:p-24 text-center shadow-glow-navy">
           <div
             className="absolute inset-0 opacity-[0.08]"
             style={{
@@ -715,12 +715,12 @@ function FinalCTA() {
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[oklch(0.6_0.18_220_/_0.35)] blur-3xl" />
 
           <div className="relative">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
               Klar til å forvandle <br className="hidden md:block" />
               matteferdighetene dine?
             </h2>
-            <p className="mt-6 max-w-xl mx-auto text-primary-foreground/75">
-              Bli med 10 000+ elever som allerede lærer raskere med MathFlow.
+            <p className="mt-5 sm:mt-6 max-w-xl mx-auto text-sm sm:text-base text-primary-foreground/80">
+              Bli med 10 000+ elever som allerede lærer raskere med MatteFlyt.
             </p>
             <Link
               to="/auth"
