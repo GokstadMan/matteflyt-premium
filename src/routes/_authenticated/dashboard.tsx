@@ -60,10 +60,14 @@ function Dashboard() {
 
   const seed = dashboardSeed;
   const maxMin = Math.max(...seed.weekActivity.map((d) => d.minutes));
+  const fetchStats = useServerFn(getUserStats);
+  const stats = useQuery({ queryKey: ["user-stats"], queryFn: () => fetchStats() });
+  const xp = stats.data?.xp ?? 0;
+  const level = stats.data?.level ?? 1;
+  const streak = stats.data?.streak_days ?? 0;
 
   return (
     <div className="min-h-screen gradient-hero-bg pb-20">
-      {/* Top bar */}
       <header className="glass-nav sticky top-0 z-40">
         <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
@@ -73,8 +77,11 @@ function Dashboard() {
             <span className="text-lg font-bold tracking-tight">MatteFlyt</span>
           </Link>
           <div className="flex items-center gap-3">
+            <Link to="/admin" className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-primary/5 transition">
+              <Settings className="h-4 w-4" /> Admin
+            </Link>
             <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-sm font-semibold">
-              <Flame className="h-4 w-4 text-[oklch(0.7_0.18_45)]" /> {seed.streakDays} dager
+              <Flame className="h-4 w-4 text-[oklch(0.7_0.18_45)]" /> {streak} dager
             </div>
             <button
               onClick={signOut}
@@ -87,45 +94,48 @@ function Dashboard() {
       </header>
 
       <main className="mx-auto max-w-7xl px-6 pt-10">
-        {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-semibold">
-            <Sparkles className="h-3.5 w-3.5" /> Nivå {seed.level} · {seed.xp.toLocaleString("nb-NO")} XP
+            <Sparkles className="h-3.5 w-3.5" /> Nivå {level} · {xp.toLocaleString("nb-NO")} XP
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight">
             Hei, {name} <span className="inline-block">👋</span>
           </h1>
           <p className="mt-2 text-muted-foreground">
-            Du er på en {seed.streakDays}-dagers stripe. Fortsett sånn!
+            {streak > 0 ? `Du er på en ${streak}-dagers stripe. Fortsett sånn!` : "Klar for dagens økt?"}
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              to="/learn"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition hover:opacity-90"
+            >
+              <BookOpen className="h-4 w-4" /> Åpne læringsbibliotek
+              <ArrowRight className="h-4 w-4" />
+            </Link>
             <Link
               to="/tutor"
               className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-emerald-700"
             >
               <Sparkles className="h-4 w-4" /> Spør AI-mattelæreren Flytur
-              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/quiz"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold shadow-sm transition hover:bg-primary/5"
             >
               <Target className="h-4 w-4" /> Start dagens quiz
-              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </motion.div>
 
-        {/* Stats */}
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard icon={Trophy} label="Mestrede emner" value={seed.masteredTopics.toString()} />
-          <StatCard icon={Target} label="Løste oppgaver" value={seed.solvedProblems.toString()} />
+          <StatCard icon={Trophy} label="XP totalt" value={xp.toLocaleString("nb-NO")} />
+          <StatCard icon={Flame} label="Streak (dager)" value={streak.toString()} />
           <StatCard icon={Clock} label="Min. denne uken" value={seed.weeklyMinutes.toString()} />
-          <StatCard icon={TrendingUp} label="Nivå" value={seed.level.toString()} />
+          <StatCard icon={TrendingUp} label="Nivå" value={level.toString()} />
         </div>
 
         {/* Two-column: progress + activity */}
