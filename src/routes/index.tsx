@@ -59,8 +59,8 @@ function Landing() {
       <Features />
       <HowItWorks />
       <Testimonials />
-      <Pricing />
-      <FinalCTA />
+      <PricingExperiment SectionHeader={SectionHeader} />
+      <FinalCTAExperiment />
       <Footer />
     </div>
   );
