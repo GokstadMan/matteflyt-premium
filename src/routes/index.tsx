@@ -543,7 +543,7 @@ function Testimonials() {
     {
       n: "Amelia Chen",
       r: "Elev, matematikk R2",
-      q: "MathFlow fikk endelig integraler til å gi mening. De visuelle grafene er som intet jeg har sett i læreboka.",
+      q: "MatteFlyt fikk endelig integraler til å gi mening. De visuelle grafene er som intet jeg har sett i læreboka.",
       i: "AC",
       g: "linear-gradient(135deg,#0ea5e9,#22d3ee)",
     },
@@ -557,7 +557,7 @@ function Testimonials() {
     {
       n: "Priya Raman",
       r: "Førsteårs ingeniørstudent",
-      q: "Jeg bruker MathFlow som oppvarming før forelesning. Det betaler seg hver uke.",
+      q: "Jeg bruker MatteFlyt som oppvarming før forelesning. Det betaler seg hver uke.",
       i: "PR",
       g: "linear-gradient(135deg,#7c3aed,#ec4899)",
     },
