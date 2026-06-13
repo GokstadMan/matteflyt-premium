@@ -184,7 +184,7 @@ function Hero() {
   const y = useTransform(scrollY, [0, 600], [0, 80]);
 
   return (
-    <section className="relative min-h-screen gradient-hero-bg pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-screen gradient-hero-bg pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
@@ -195,7 +195,7 @@ function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -206,19 +206,19 @@ function Hero() {
             Brukt av 10 000+ elever
           </div>
 
-          <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">
+          <h1 className="mt-5 sm:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
             Mestre matematikk
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-5 sm:mt-6 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
             Interaktive leksjoner, AI-drevne forklaringer og steg-for-steg-løsninger laget for å hjelpe elever å lære
             raskere.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
             <HeroCTA />
 
-            <button className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-12 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
               <span className="grid place-items-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                 <Play className="h-3.5 w-3.5 ml-0.5" />
               </span>
@@ -226,8 +226,8 @@ function Hero() {
             </button>
           </div>
 
-          <div className="mt-10 flex items-center gap-5 text-sm text-muted-foreground">
-            <div className="flex -space-x-2">
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5 text-sm text-muted-foreground">
+            <div className="flex -space-x-2 shrink-0">
               {["A", "B", "C", "D"].map((c, i) => (
                 <div
                   key={c}
@@ -242,7 +242,7 @@ function Hero() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 flex-wrap">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-primary text-primary" />
               ))}
@@ -252,7 +252,7 @@ function Hero() {
           </div>
         </motion.div>
 
-        <motion.div style={{ y }} className="relative h-[520px] lg:h-[600px]">
+        <motion.div style={{ y }} className="relative h-[380px] sm:h-[460px] md:h-[520px] lg:h-[600px]">
           <HeroIllustration />
         </motion.div>
       </div>
