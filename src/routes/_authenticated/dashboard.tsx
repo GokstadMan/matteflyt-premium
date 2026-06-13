@@ -25,7 +25,11 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
-    meta: [{ title: "Mitt dashboard — MatteFlyt" }],
+    meta: [
+      { title: "Mitt dashboard — MatteFlyt" },
+      { name: "description", content: "Se din XP, streak og fremgang. Fortsett der du slapp og hold flammen i gang." },
+      { name: "robots", content: "noindex" },
+    ],
   }),
   component: Dashboard,
 });
