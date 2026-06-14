@@ -209,7 +209,7 @@ function Hero() {
             Brukt av 10 000+ elever
           </div>
 
-          <h1 className="mt-5 sm:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
+          <h1 className="mt-5 sm:mt-6 text-[clamp(2.25rem,9vw,3rem)] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight text-balance">
             Mestre matematikk
           </h1>
 
