@@ -17,6 +17,7 @@ import {
   TrendingUp,
   BookOpen,
   Settings,
+  Trophy,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { dashboardSeed } from "@/lib/dashboard-seed";
