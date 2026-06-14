@@ -536,7 +536,7 @@ function HowItWorks() {
     { n: "03", t: "Følg fremgangen", d: "Se rekken vokse og svake punkter forsvinne på ditt personlige dashbord." },
   ];
   return (
-    <section id="courses" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+    <section id="courses" className="scroll-mt-24 py-14 sm:py-24 md:py-28 bg-secondary/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Slik fungerer det"
