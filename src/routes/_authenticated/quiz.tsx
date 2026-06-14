@@ -160,11 +160,38 @@ function QuizPage() {
             <div className="mx-auto grid place-items-center h-16 w-16 rounded-2xl gradient-premium-bg shadow-soft">
               <Trophy className="h-8 w-8 text-primary-foreground" />
             </div>
-            <h1 className="mt-5 text-3xl font-extrabold tracking-tight">Bra jobba!</h1>
+            <h1 className="mt-5 text-3xl font-extrabold tracking-tight">
+              {isPerfect ? "Perfekt score!" : "Bra jobba!"}
+            </h1>
             <p className="mt-2 text-muted-foreground">
-              Du fikk {correctCount} av {total} riktig og tjente {xp} XP.
+              Du fikk {correctCount} av {total} riktig.
             </p>
-            <div className="mt-6 flex items-center justify-center gap-3">
+
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+              className="mt-6 inline-flex items-center gap-2 rounded-2xl border border-primary/15 bg-primary/5 px-6 py-3"
+            >
+              <Sparkles className="h-5 w-5 text-[oklch(0.7_0.18_45)]" />
+              <span className="text-3xl font-extrabold tracking-tight tabular-nums">
+                +{animatedXp}
+              </span>
+              <span className="text-sm font-semibold text-muted-foreground">XP</span>
+            </motion.div>
+
+            {isPerfect && (
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-3 text-sm font-semibold text-emerald-600"
+              >
+                Full pott — alle spørsmål riktig!
+              </motion.p>
+            )}
+
+            <div className="mt-8 flex items-center justify-center gap-3">
               <button
                 onClick={restart}
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-700"
