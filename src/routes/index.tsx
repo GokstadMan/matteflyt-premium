@@ -187,7 +187,7 @@ function Hero() {
   const [demoOpen, setDemoOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen gradient-hero-bg pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-[100svh] gradient-hero-bg pt-20 pb-14 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
