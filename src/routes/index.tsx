@@ -183,6 +183,7 @@ function Nav() {
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 80]);
+  const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen gradient-hero-bg pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
