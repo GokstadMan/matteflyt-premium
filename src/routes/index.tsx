@@ -731,9 +731,9 @@ function Pricing() {
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-28">
+    <section id="contact" className="scroll-mt-24 py-14 sm:py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] gradient-premium-bg px-6 py-14 sm:px-8 sm:py-20 md:p-24 text-center shadow-glow-navy">
+        <div className="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.5rem] gradient-premium-bg px-5 py-12 sm:px-8 sm:py-20 md:p-24 text-center shadow-glow-navy">
           <div
             className="absolute inset-0 opacity-[0.08]"
             style={{
@@ -746,7 +746,7 @@ function FinalCTA() {
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[oklch(0.6_0.18_220_/_0.35)] blur-3xl" />
 
           <div className="relative">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
+            <h2 className="text-[clamp(1.75rem,7vw,2.25rem)] sm:text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight text-balance">
               Klar til å forvandle <br className="hidden md:block" />
               matteferdighetene dine?
             </h2>
@@ -755,7 +755,7 @@ function FinalCTA() {
             </p>
             <Link
               to="/auth"
-              className="mt-10 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all"
+              className="mt-8 sm:mt-10 inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-4 min-h-12 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all"
             >
               Kom i gang i dag
               <ArrowRight className="h-4 w-4" />
