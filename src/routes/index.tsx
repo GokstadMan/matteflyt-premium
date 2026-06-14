@@ -712,7 +712,7 @@ function Pricing() {
                 ))}
               </ul>
               <button
-                className={`mt-10 w-full py-3.5 rounded-full font-semibold transition-all ${
+                className={`mt-10 w-full py-3.5 min-h-12 rounded-full font-semibold transition-all ${
                   p.featured
                     ? "bg-primary-foreground text-primary hover:scale-[1.02]"
                     : "bg-primary text-primary-foreground hover:shadow-glow-navy"
