@@ -45,6 +45,25 @@ function QuizPage() {
   const saveAttempt = useServerFn(recordQuizAttempt);
   const qc = useQueryClient();
   const savedRef = useRef(false);
+  const confettiFired = useRef(false);
+  const isPerfect = finished && correctCount === total;
+  const animatedXp = useCountUp(xp, 1400, finished);
+
+  useEffect(() => {
+    if (isPerfect && !confettiFired.current) {
+      confettiFired.current = true;
+      const defaults = { spread: 55, startVelocity: 45, origin: { y: 0.65 }, scalar: 1.1 };
+      const end = Date.now() + 2000;
+
+      const fire = () => {
+        if (Date.now() > end) return;
+        confetti({ ...defaults, particleCount: 20, angle: 60, origin: { x: 0 } });
+        confetti({ ...defaults, particleCount: 20, angle: 120, origin: { x: 1 } });
+        requestAnimationFrame(fire);
+      };
+      fire();
+    }
+  }, [isPerfect]);
 
   const problem = quizProblems[idx];
   const total = quizProblems.length;
