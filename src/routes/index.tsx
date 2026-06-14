@@ -683,7 +683,7 @@ function Pricing() {
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-3 right-8 px-3 py-1 rounded-full text-[11px] font-bold bg-[oklch(0.72_0.14_152)] text-primary">
+                <span className="absolute -top-3 right-4 sm:right-8 px-3 py-1 rounded-full text-[11px] font-bold bg-[oklch(0.72_0.14_152)] text-primary">
                   ANBEFALT
                 </span>
               )}
@@ -693,8 +693,8 @@ function Pricing() {
                 {p.tag}
               </div>
               <div className="mt-2 text-2xl font-bold">{p.name}</div>
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-5xl font-extrabold tracking-tight">{p.price}</span>
+              <div className="mt-6 flex items-baseline gap-1 flex-wrap">
+                <span className="text-4xl sm:text-5xl font-extrabold tracking-tight">{p.price}</span>
                 <span className={`text-sm ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                   /måned
                 </span>
