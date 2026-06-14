@@ -187,7 +187,7 @@ function Hero() {
   const [demoOpen, setDemoOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen gradient-hero-bg pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-[100svh] gradient-hero-bg pt-20 pb-14 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
@@ -209,7 +209,7 @@ function Hero() {
             Brukt av 10 000+ elever
           </div>
 
-          <h1 className="mt-5 sm:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
+          <h1 className="mt-5 sm:mt-6 text-[clamp(2.25rem,9vw,3rem)] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight text-balance">
             Mestre matematikk
           </h1>
 
@@ -283,7 +283,7 @@ function Hero() {
           </div>
         </motion.div>
 
-        <motion.div style={{ y }} className="relative h-[380px] sm:h-[460px] md:h-[520px] lg:h-[600px]">
+        <motion.div style={{ y }} className="relative h-[340px] sm:h-[460px] md:h-[520px] lg:h-[600px] mt-2 lg:mt-0">
           <HeroIllustration />
         </motion.div>
       </div>
@@ -387,7 +387,7 @@ function HeroIllustration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="absolute -left-2 top-16 glass-card rounded-2xl px-4 py-3 animate-float-slow"
+        className="absolute left-1 sm:-left-2 top-14 sm:top-16 glass-card rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 animate-float-slow"
       >
         <div className="text-[10px] font-mono text-muted-foreground">Pytagoras</div>
         <div className="text-lg font-bold mt-0.5">a² + b² = c²</div>
@@ -397,7 +397,7 @@ function HeroIllustration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="absolute -right-2 top-32 glass-card rounded-2xl p-3 animate-float-medium"
+        className="absolute right-1 sm:-right-2 top-28 sm:top-32 glass-card rounded-2xl p-2.5 sm:p-3 animate-float-medium"
       >
         <svg width="80" height="80" viewBox="0 0 80 80">
           <polygon points="40,8 72,64 8,64" fill="none" stroke="var(--mf-navy)" strokeWidth="2" />
@@ -419,7 +419,7 @@ function HeroIllustration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9 }}
-        className="absolute -left-2 bottom-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-3 animate-float-medium"
+        className="absolute left-1 sm:-left-2 bottom-4 sm:bottom-6 glass-card rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 flex items-center gap-3 animate-float-medium"
       >
         <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg">
           <Brain className="h-4 w-4 text-primary-foreground" />
@@ -494,7 +494,7 @@ function Features() {
   ];
 
   return (
-    <section id="features" className="py-16 sm:py-24 md:py-28">
+    <section id="features" className="scroll-mt-24 py-14 sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Funksjoner"
@@ -536,7 +536,7 @@ function HowItWorks() {
     { n: "03", t: "Følg fremgangen", d: "Se rekken vokse og svake punkter forsvinne på ditt personlige dashbord." },
   ];
   return (
-    <section id="courses" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+    <section id="courses" className="scroll-mt-24 py-14 sm:py-24 md:py-28 bg-secondary/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Slik fungerer det"
@@ -594,7 +594,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section id="testimonials" className="py-16 sm:py-24 md:py-28">
+    <section id="testimonials" className="scroll-mt-24 py-14 sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Elsket av elever" title="Ekte fremgang, med deres egne ord" />
         <div className="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6">
@@ -662,7 +662,7 @@ function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 md:py-28 bg-secondary/70">
+    <section id="pricing" className="scroll-mt-24 py-14 sm:py-24 md:py-28 bg-secondary/70">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Priser"
@@ -683,7 +683,7 @@ function Pricing() {
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-3 right-8 px-3 py-1 rounded-full text-[11px] font-bold bg-[oklch(0.72_0.14_152)] text-primary">
+                <span className="absolute -top-3 right-4 sm:right-8 px-3 py-1 rounded-full text-[11px] font-bold bg-[oklch(0.72_0.14_152)] text-primary">
                   ANBEFALT
                 </span>
               )}
@@ -693,8 +693,8 @@ function Pricing() {
                 {p.tag}
               </div>
               <div className="mt-2 text-2xl font-bold">{p.name}</div>
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-5xl font-extrabold tracking-tight">{p.price}</span>
+              <div className="mt-6 flex items-baseline gap-1 flex-wrap">
+                <span className="text-4xl sm:text-5xl font-extrabold tracking-tight">{p.price}</span>
                 <span className={`text-sm ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                   /måned
                 </span>
@@ -712,7 +712,7 @@ function Pricing() {
                 ))}
               </ul>
               <button
-                className={`mt-10 w-full py-3.5 rounded-full font-semibold transition-all ${
+                className={`mt-10 w-full py-3.5 min-h-12 rounded-full font-semibold transition-all ${
                   p.featured
                     ? "bg-primary-foreground text-primary hover:scale-[1.02]"
                     : "bg-primary text-primary-foreground hover:shadow-glow-navy"
@@ -731,9 +731,9 @@ function Pricing() {
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-28">
+    <section id="contact" className="scroll-mt-24 py-14 sm:py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] gradient-premium-bg px-6 py-14 sm:px-8 sm:py-20 md:p-24 text-center shadow-glow-navy">
+        <div className="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.5rem] gradient-premium-bg px-5 py-12 sm:px-8 sm:py-20 md:p-24 text-center shadow-glow-navy">
           <div
             className="absolute inset-0 opacity-[0.08]"
             style={{
@@ -746,7 +746,7 @@ function FinalCTA() {
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[oklch(0.6_0.18_220_/_0.35)] blur-3xl" />
 
           <div className="relative">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight">
+            <h2 className="text-[clamp(1.75rem,7vw,2.25rem)] sm:text-4xl md:text-6xl font-extrabold tracking-tight text-primary-foreground leading-tight text-balance">
               Klar til å forvandle <br className="hidden md:block" />
               matteferdighetene dine?
             </h2>
@@ -755,7 +755,7 @@ function FinalCTA() {
             </p>
             <Link
               to="/auth"
-              className="mt-10 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all"
+              className="mt-8 sm:mt-10 inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-4 min-h-12 rounded-full bg-[oklch(0.97_0.05_153)] text-primary font-semibold shadow-soft hover:-translate-y-0.5 hover:shadow-glow-navy transition-all"
             >
               Kom i gang i dag
               <ArrowRight className="h-4 w-4" />
@@ -842,8 +842,10 @@ function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: s
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-xs font-semibold uppercase tracking-wider text-primary">
         {eyebrow}
       </div>
-      <h2 className="mt-4 sm:mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">{title}</h2>
-      {subtitle && <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
+      <h2 className="mt-4 sm:mt-5 text-[clamp(1.75rem,6vw,2rem)] sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] text-balance">
+        {title}
+      </h2>
+      {subtitle && <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed text-balance">{subtitle}</p>}
     </div>
   );
 }
