@@ -62,14 +62,18 @@ export function useExperiment<V extends string>(
   experiment: string,
   variants: readonly V[],
 ): { variant: V; track: (event: "click" | "conversion", metadata?: Record<string, unknown>) => void } {
-  const variant = useMemo(() => pickVariant(experiment, variants), [experiment, variants]);
+  // SSR + first client render always return variants[0] to avoid hydration mismatch.
+  // After mount, we swap to the actual assigned variant.
+  const [variant, setVariant] = useState<V>(variants[0]);
   const impressed = useRef(false);
 
   useEffect(() => {
+    const picked = pickVariant(experiment, variants);
+    setVariant(picked);
     if (impressed.current) return;
     impressed.current = true;
-    void trackAB(experiment, variant, "impression");
-  }, [experiment, variant]);
+    void trackAB(experiment, picked, "impression");
+  }, [experiment, variants]);
 
   return {
     variant,
