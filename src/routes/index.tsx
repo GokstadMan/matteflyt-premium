@@ -397,7 +397,7 @@ function HeroIllustration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="absolute -right-2 top-32 glass-card rounded-2xl p-3 animate-float-medium"
+        className="absolute right-1 sm:-right-2 top-28 sm:top-32 glass-card rounded-2xl p-2.5 sm:p-3 animate-float-medium"
       >
         <svg width="80" height="80" viewBox="0 0 80 80">
           <polygon points="40,8 72,64 8,64" fill="none" stroke="var(--mf-navy)" strokeWidth="2" />
