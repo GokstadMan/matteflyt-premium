@@ -21,6 +21,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/landing/Experiments";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import demoVideo from "@/assets/mathflyt-demo.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -242,12 +243,12 @@ function Hero() {
                 <div className="px-6 pb-6 pt-4">
                   <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-glow-navy">
                     {demoOpen && (
-                      <iframe
-                        className="absolute inset-0 h-full w-full"
-                        src="https://www.youtube.com/embed/9vJRopau0g0?autoplay=1&rel=0"
-                        title="MatteFlyt demo"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
+                      <video
+                        className="absolute inset-0 h-full w-full object-cover"
+                        src={demoVideo.url}
+                        autoPlay
+                        controls
+                        playsInline
                       />
                     )}
                   </div>
