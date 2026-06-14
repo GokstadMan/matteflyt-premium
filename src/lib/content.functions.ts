@@ -94,6 +94,32 @@ export const getUserStats = createServerFn({ method: "GET" })
         last_active_date: null,
       }
     );
+});
+
+export type LeaderboardEntry = {
+  user_id: string;
+  full_name: string | null;
+  xp: number;
+  level: number;
+  streak_days: number;
+};
+
+export const getLeaderboard = createServerFn({ method: "GET" })
+  .handler(async (): Promise<LeaderboardEntry[]> => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data, error } = await supabaseAdmin
+      .from("user_stats")
+      .select("user_id, xp, level, streak_days, profiles(full_name)")
+      .order("xp", { ascending: false })
+      .limit(20);
+    if (error) throw new Error(error.message);
+    return (data ?? []).map((row: any) => ({
+      user_id: row.user_id,
+      full_name: row.profiles?.full_name ?? null,
+      xp: row.xp ?? 0,
+      level: row.level ?? 1,
+      streak_days: row.streak_days ?? 0,
+    }));
   });
 
 export const checkIsAdmin = createServerFn({ method: "GET" })
