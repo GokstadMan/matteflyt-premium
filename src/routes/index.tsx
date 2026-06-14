@@ -419,7 +419,7 @@ function HeroIllustration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9 }}
-        className="absolute -left-2 bottom-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-3 animate-float-medium"
+        className="absolute left-1 sm:-left-2 bottom-4 sm:bottom-6 glass-card rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 flex items-center gap-3 animate-float-medium"
       >
         <span className="grid place-items-center h-9 w-9 rounded-xl gradient-premium-bg">
           <Brain className="h-4 w-4 text-primary-foreground" />
