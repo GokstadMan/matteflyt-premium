@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/landing/Experiments";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -182,6 +183,7 @@ function Nav() {
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 80]);
+  const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen gradient-hero-bg pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
@@ -218,12 +220,40 @@ function Hero() {
           <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
             <HeroCTA />
 
-            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-12 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all">
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-12 rounded-full glass-card font-semibold hover:-translate-y-0.5 transition-all"
+            >
               <span className="grid place-items-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                 <Play className="h-3.5 w-3.5 ml-0.5" />
               </span>
               Se demo
             </button>
+
+            <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
+              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-background border-border">
+                <DialogHeader className="px-6 pt-6">
+                  <DialogTitle>MatteFlyt-demo</DialogTitle>
+                  <DialogDescription>
+                    Se hvordan AI-mattelæreren forklarer steg for steg.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="px-6 pb-6 pt-4">
+                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-glow-navy">
+                    {demoOpen && (
+                      <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src="https://www.youtube.com/embed/9vJRopau0g0?autoplay=1&rel=0"
+                        title="MatteFlyt demo"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )}
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
 
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5 text-sm text-muted-foreground">
