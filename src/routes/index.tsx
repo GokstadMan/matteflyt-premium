@@ -842,8 +842,10 @@ function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: s
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-xs font-semibold uppercase tracking-wider text-primary">
         {eyebrow}
       </div>
-      <h2 className="mt-4 sm:mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">{title}</h2>
-      {subtitle && <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">{subtitle}</p>}
+      <h2 className="mt-4 sm:mt-5 text-[clamp(1.75rem,6vw,2rem)] sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] text-balance">
+        {title}
+      </h2>
+      {subtitle && <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed text-balance">{subtitle}</p>}
     </div>
   );
 }
