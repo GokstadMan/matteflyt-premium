@@ -44,6 +44,7 @@ function QuizPage() {
   const [finished, setFinished] = useState(false);
   const saveAttempt = useServerFn(recordQuizAttempt);
   const qc = useQueryClient();
+  const total = quizProblems.length;
   const savedRef = useRef(false);
   const confettiFired = useRef(false);
   const isPerfect = finished && correctCount === total;
