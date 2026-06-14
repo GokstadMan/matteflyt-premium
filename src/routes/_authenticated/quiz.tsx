@@ -67,7 +67,6 @@ function QuizPage() {
   }, [isPerfect]);
 
   const problem = quizProblems[idx];
-  const total = quizProblems.length;
   const progress = useMemo(() => ((idx + (finished ? 1 : 0)) / total) * 100, [idx, finished, total]);
 
   useEffect(() => {
