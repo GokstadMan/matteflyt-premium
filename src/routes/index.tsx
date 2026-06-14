@@ -283,7 +283,7 @@ function Hero() {
           </div>
         </motion.div>
 
-        <motion.div style={{ y }} className="relative h-[380px] sm:h-[460px] md:h-[520px] lg:h-[600px]">
+        <motion.div style={{ y }} className="relative h-[340px] sm:h-[460px] md:h-[520px] lg:h-[600px] mt-2 lg:mt-0">
           <HeroIllustration />
         </motion.div>
       </div>
