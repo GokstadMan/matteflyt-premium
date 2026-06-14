@@ -387,7 +387,7 @@ function HeroIllustration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="absolute -left-2 top-16 glass-card rounded-2xl px-4 py-3 animate-float-slow"
+        className="absolute left-1 sm:-left-2 top-14 sm:top-16 glass-card rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 animate-float-slow"
       >
         <div className="text-[10px] font-mono text-muted-foreground">Pytagoras</div>
         <div className="text-lg font-bold mt-0.5">a² + b² = c²</div>
