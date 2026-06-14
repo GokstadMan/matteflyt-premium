@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
+import confetti from "canvas-confetti";
 import {
   Sigma,
   ArrowLeft,
@@ -17,6 +18,7 @@ import {
 import { quizProblems } from "@/lib/quiz-seed";
 import { recordQuizAttempt } from "@/lib/content.functions";
 import { toast } from "sonner";
+import { useCountUp } from "@/hooks/use-count-up";
 
 export const Route = createFileRoute("/_authenticated/quiz")({
   head: () => ({
