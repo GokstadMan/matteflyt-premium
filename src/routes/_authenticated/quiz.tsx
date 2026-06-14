@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
+import confetti from "canvas-confetti";
 import {
   Sigma,
   ArrowLeft,
@@ -17,6 +18,7 @@ import {
 import { quizProblems } from "@/lib/quiz-seed";
 import { recordQuizAttempt } from "@/lib/content.functions";
 import { toast } from "sonner";
+import { useCountUp } from "@/hooks/use-count-up";
 
 export const Route = createFileRoute("/_authenticated/quiz")({
   head: () => ({
@@ -42,10 +44,29 @@ function QuizPage() {
   const [finished, setFinished] = useState(false);
   const saveAttempt = useServerFn(recordQuizAttempt);
   const qc = useQueryClient();
+  const total = quizProblems.length;
   const savedRef = useRef(false);
+  const confettiFired = useRef(false);
+  const isPerfect = finished && correctCount === total;
+  const animatedXp = useCountUp(xp, 1400, finished);
+
+  useEffect(() => {
+    if (isPerfect && !confettiFired.current) {
+      confettiFired.current = true;
+      const defaults = { spread: 55, startVelocity: 45, origin: { y: 0.65 }, scalar: 1.1 };
+      const end = Date.now() + 2000;
+
+      const fire = () => {
+        if (Date.now() > end) return;
+        confetti({ ...defaults, particleCount: 20, angle: 60, origin: { x: 0 } });
+        confetti({ ...defaults, particleCount: 20, angle: 120, origin: { x: 1 } });
+        requestAnimationFrame(fire);
+      };
+      fire();
+    }
+  }, [isPerfect]);
 
   const problem = quizProblems[idx];
-  const total = quizProblems.length;
   const progress = useMemo(() => ((idx + (finished ? 1 : 0)) / total) * 100, [idx, finished, total]);
 
   useEffect(() => {
@@ -139,11 +160,38 @@ function QuizPage() {
             <div className="mx-auto grid place-items-center h-16 w-16 rounded-2xl gradient-premium-bg shadow-soft">
               <Trophy className="h-8 w-8 text-primary-foreground" />
             </div>
-            <h1 className="mt-5 text-3xl font-extrabold tracking-tight">Bra jobba!</h1>
+            <h1 className="mt-5 text-3xl font-extrabold tracking-tight">
+              {isPerfect ? "Perfekt score!" : "Bra jobba!"}
+            </h1>
             <p className="mt-2 text-muted-foreground">
-              Du fikk {correctCount} av {total} riktig og tjente {xp} XP.
+              Du fikk {correctCount} av {total} riktig.
             </p>
-            <div className="mt-6 flex items-center justify-center gap-3">
+
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+              className="mt-6 inline-flex items-center gap-2 rounded-2xl border border-primary/15 bg-primary/5 px-6 py-3"
+            >
+              <Sparkles className="h-5 w-5 text-[oklch(0.7_0.18_45)]" />
+              <span className="text-3xl font-extrabold tracking-tight tabular-nums">
+                +{animatedXp}
+              </span>
+              <span className="text-sm font-semibold text-muted-foreground">XP</span>
+            </motion.div>
+
+            {isPerfect && (
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-3 text-sm font-semibold text-emerald-600"
+              >
+                Full pott — alle spørsmål riktig!
+              </motion.p>
+            )}
+
+            <div className="mt-8 flex items-center justify-center gap-3">
               <button
                 onClick={restart}
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-700"
