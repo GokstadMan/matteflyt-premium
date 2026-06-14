@@ -494,7 +494,7 @@ function Features() {
   ];
 
   return (
-    <section id="features" className="py-16 sm:py-24 md:py-28">
+    <section id="features" className="scroll-mt-24 py-14 sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Funksjoner"
