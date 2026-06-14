@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/landing/Experiments";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
