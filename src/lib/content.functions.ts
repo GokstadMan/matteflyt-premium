@@ -194,7 +194,8 @@ export const recordQuizAttempt = createServerFn({ method: "POST" })
       MAX_XP_PER_QUIZ_ATTEMPT,
     );
 
-    const { error } = await context.supabase.from("quiz_attempts").insert({
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.from("quiz_attempts").insert({
       user_id: context.userId,
       quiz_id: data.quizId,
       score: data.score,
@@ -203,7 +204,6 @@ export const recordQuizAttempt = createServerFn({ method: "POST" })
     });
     if (error) throw new Error(error.message);
 
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: stats, error: xpErr } = await (supabaseAdmin.rpc as unknown as (
       fn: string,
       args: Record<string, unknown>,
