@@ -1,56 +1,42 @@
-# Plan: MatteFlyt — Auth + Studentdashboard (demo)
+## Goal
+Add a discrete (small, unobtrusive) dark-mode option that matches MatteFlyt's brand — deep navy base with mint accents — instead of the generic gray shadcn defaults currently sitting in `.dark`.
 
-Gjør MatteFlyt om til et ekte produkt: brukere kan registrere seg, logge inn, og se et personlig dashboard med fremgang (basert på seed-data).
+## What gets built
 
-## Hva som bygges
+### 1. Theme provider + toggle hook
+- New `src/components/theme-provider.tsx`: tiny client-only provider that reads `localStorage("matteflyt-theme")` (values: `light` | `dark` | `system`), applies `class="dark"` to `<html>`, and listens for OS theme changes when `system` is selected. Defaults to `system`.
+- Inline pre-hydration script in `src/routes/__root.tsx` `<head>` so the correct class is set before first paint — prevents the light-mode flash on refresh.
 
-### 1. Lovable Cloud (backend)
-- Aktivere Cloud (database, auth, server functions).
-- `profiles`-tabell koblet til `auth.users` (id, full_name, created_at) + trigger som auto-oppretter profil ved signup.
-- RLS: brukere kan kun lese/oppdatere egen profil.
-- Sosial pålogging: Google aktiveres via Lovable-broker.
+### 2. Discrete toggle button
+- New `src/components/theme-toggle.tsx`: a small 36px icon button (sun/moon from `lucide-react`) with a 3-option dropdown (Light / Dark / System). Ghost variant, sits quietly in the nav.
+- Mounted in the landing nav (`src/routes/index.tsx`) and the authenticated app header so it's available everywhere.
 
-### 2. Auth-sider
-- `/auth` — kombinert Logg inn / Registrer (e-post + passord, og "Fortsett med Google").
-- Header på landingssiden får "Logg inn"-knapp; når innlogget vises "Dashboard" + avatar/utlogging.
-- Glemt passord + `/reset-password`-side.
+### 3. Brand-matched dark palette (in `src/styles.css`)
+Replace the generic gray `.dark` block with tokens that extend the existing MatteFlyt palette:
+- `--background`: very deep navy (`oklch(0.16 0.04 258)`) — derived from `--mf-navy-deep`
+- `--foreground`: soft mint-tinted white
+- `--card` / `--popover`: one step lighter navy with subtle mint tint
+- `--primary`: mint (inverted role — mint pops on dark) with navy `--primary-foreground`
+- `--accent`: mint-500 retained
+- `--border` / `--input`: low-opacity mint
+- Dark variants of `--gradient-hero`, `--gradient-premium`, `--shadow-*`
 
-### 3. Beskyttede ruter
-- `src/routes/_authenticated/route.tsx` (integration-managed gate, redirect til `/auth`).
-- `_authenticated/dashboard.tsx` — studentdashboard.
+### 4. Dark-aware utilities
+The current `glass-card` and `glass-nav` hardcode light colors. Add `.dark` overrides so they render as smoked navy glass instead of washed-out white in dark mode. `gradient-text` gets a dark variant that uses mint→cyan so it stays legible.
 
-### 4. Studentdashboard (demo med seed-data)
-Designet i samme premium-stil som landingssiden (lysegrønn palett, glassmorphism, Framer Motion).
+### 5. Verification
+- View preview at desktop + mobile in both themes.
+- Spot-check: landing hero, pricing cards, dashboard, quiz, leaderboard, auth page — confirm no hardcoded `bg-white`/`text-black` slipped in (quick rg sweep).
 
-Innhold:
-- **Velkomst-hero**: "Hei, {fornavn} 👋" + dagens streak.
-- **Stats-kort** (4 stk): Mestrede emner, Løste oppgaver, Studietid denne uken, XP/nivå.
-- **Fremgang per emne** (Algebra, Geometri, Brøk, Likninger, Funksjoner) med progress-bars.
-- **Ukentlig aktivitet**: enkel bar-chart (Recharts).
-- **Anbefalte neste leksjoner**: 3 kort.
-- **Achievements/badges**: 4–6 utmerkelser.
+## Out of scope
+- No per-user theme preference stored in the database (localStorage only).
+- No new color scales beyond what's needed for the dark mapping.
+- No redesign of components — only token swaps.
 
-All data er hardkodet seed-data per bruker (ingen ekte oppgaveløsing i denne versjonen — det er neste steg).
-
-### 5. Landingsside-oppdatering
-- CTA-knapper ("Start gratis", "Kom i gang") peker til `/auth`.
-- Innlogget bruker sendes til `/dashboard` ved klikk på CTA.
-
-## Tekniske detaljer
-
-- `src/integrations/supabase/client.ts` for browser-auth.
-- `onAuthStateChange` i `__root.tsx` for cache-invalidering.
-- Profil-data hentet via `createServerFn` med `requireSupabaseAuth`.
-- Seed-data lever som konstanter i `src/lib/dashboard-seed.ts` (kan byttes ut med ekte queries senere).
-- Recharts legges til for grafer.
-
-## Ikke inkludert i denne versjonen
-- Faktiske matteoppgaver / quiz-motor.
-- Lagring av reell fremgang.
-- Lærer-/foreldredashboard.
-- Betaling.
-
-Disse kan bygges som neste iterasjon når demo-flyten er på plass.
-
-## Estimat
-Mellomstor build — én sammenhengende implementasjon. Bruker mellom ~25–40 credits avhengig av justeringer underveis. God utnyttelse av kredittene dine før de utløper.
+## Files touched
+- `src/styles.css` — rewrite `.dark` block, add dark variants for glass/gradient utilities
+- `src/routes/__root.tsx` — add pre-hydration theme script
+- `src/components/theme-provider.tsx` — new
+- `src/components/theme-toggle.tsx` — new
+- `src/routes/index.tsx` — mount toggle in nav
+- Authenticated header (wherever the dashboard nav lives) — mount toggle
