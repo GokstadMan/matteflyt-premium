@@ -22,6 +22,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { dashboardSeed } from "@/lib/dashboard-seed";
 import { getUserStats } from "@/lib/content.functions";
 import { toast } from "sonner";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
