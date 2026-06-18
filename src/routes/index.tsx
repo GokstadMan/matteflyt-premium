@@ -22,6 +22,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { HeroCTA, PricingExperiment, FinalCTAExperiment } from "@/components/landing/Experiments";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import demoVideo from "@/assets/mathflyt-demo.mp4.asset.json";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -117,6 +118,7 @@ function Nav() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           {!authed && (
             <Link
               to="/auth"

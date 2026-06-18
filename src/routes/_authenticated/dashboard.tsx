@@ -22,6 +22,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { dashboardSeed } from "@/lib/dashboard-seed";
 import { getUserStats } from "@/lib/content.functions";
 import { toast } from "sonner";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -81,6 +82,7 @@ function Dashboard() {
             <span className="text-lg font-bold tracking-tight">MatteFlyt</span>
           </Link>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link to="/admin" className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-primary/5 transition">
               <Settings className="h-4 w-4" /> Admin
             </Link>
